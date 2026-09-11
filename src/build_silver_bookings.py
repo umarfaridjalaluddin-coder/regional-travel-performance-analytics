@@ -153,15 +153,34 @@ def add_mapping_columns(
 
     result = df.copy()
 
-    result = result.merge(
-        product_mapping.rename(
+    product_map = (
+        product_mapping
+        .rename(
             columns={
                 "country_code":
                     "source_country",
                 "source_product":
                     "product_type_source",
             }
-        ),
+        )
+        .copy()
+    )
+
+    channel_map = (
+        channel_mapping
+        .rename(
+            columns={
+                "country_code":
+                    "source_country",
+                "source_channel":
+                    "booking_channel_source",
+            }
+        )
+        .copy()
+    )
+
+    result = result.merge(
+        product_map,
         on=[
             "source_country",
             "product_type_source",
@@ -171,17 +190,81 @@ def add_mapping_columns(
     )
 
     result = result.merge(
-        channel_mapping.rename(
-            columns={
-                "country_code":
-                    "source_country",
-                "source_channel":
-                    "booking_channel_source",
-            }
-        ),
+        channel_map,
         on=[
             "source_country",
             "booking_channel_source",
+        ],
+        how="left",
+        validate="many_to_one",
+    )
+
+    return result
+
+
+def add_regional_master_ids(
+    df: pd.DataFrame,
+) -> pd.DataFrame:
+
+    customer_crosswalk = pd.read_csv(
+        REFERENCE_DIR
+        / "customer_crosswalk.csv"
+    )
+
+    supplier_crosswalk = pd.read_csv(
+        REFERENCE_DIR
+        / "supplier_crosswalk.csv"
+    )
+
+    customer_lookup = (
+        customer_crosswalk[
+            [
+                "source_country",
+                "local_customer_id",
+                "regional_customer_id",
+            ]
+        ]
+        .rename(
+            columns={
+                "local_customer_id":
+                    "customer_id_local"
+            }
+        )
+        .copy()
+    )
+
+    supplier_lookup = (
+        supplier_crosswalk[
+            [
+                "source_country",
+                "local_supplier_id",
+                "regional_supplier_id",
+            ]
+        ]
+        .rename(
+            columns={
+                "local_supplier_id":
+                    "supplier_id_local"
+            }
+        )
+        .copy()
+    )
+
+    result = df.merge(
+        customer_lookup,
+        on=[
+            "source_country",
+            "customer_id_local",
+        ],
+        how="left",
+        validate="many_to_one",
+    )
+
+    result = result.merge(
+        supplier_lookup,
+        on=[
+            "source_country",
+            "supplier_id_local",
         ],
         how="left",
         validate="many_to_one",
@@ -199,7 +282,6 @@ def add_reference_checks(
     result = df.copy()
 
     customer_valid = []
-
     supplier_valid = []
 
     for row in result.itertuples(
@@ -230,13 +312,17 @@ def add_reference_checks(
         customer_valid.append(
             customer_id is not None
             and customer_id
-            in customer_keys[country]
+            in customer_keys[
+                country
+            ]
         )
 
         supplier_valid.append(
             supplier_id is not None
             and supplier_id
-            in supplier_keys[country]
+            in supplier_keys[
+                country
+            ]
         )
 
     result[
@@ -271,7 +357,8 @@ def add_validation_flags(
     ] = (
         result[
             "booking_id"
-        ].notna()
+        ]
+        .notna()
     )
 
     result[
@@ -279,7 +366,8 @@ def add_validation_flags(
     ] = (
         result[
             "customer_id_local"
-        ].notna()
+        ]
+        .notna()
     )
 
     result[
@@ -287,7 +375,26 @@ def add_validation_flags(
     ] = (
         result[
             "supplier_id_local"
-        ].notna()
+        ]
+        .notna()
+    )
+
+    result[
+        "regional_customer_valid"
+    ] = (
+        result[
+            "regional_customer_id"
+        ]
+        .notna()
+    )
+
+    result[
+        "regional_supplier_valid"
+    ] = (
+        result[
+            "regional_supplier_id"
+        ]
+        .notna()
     )
 
     result[
@@ -295,7 +402,8 @@ def add_validation_flags(
     ] = (
         result[
             "regional_product"
-        ].notna()
+        ]
+        .notna()
     )
 
     result[
@@ -303,7 +411,8 @@ def add_validation_flags(
     ] = (
         result[
             "regional_channel"
-        ].notna()
+        ]
+        .notna()
     )
 
     result[
@@ -326,7 +435,8 @@ def add_validation_flags(
     ] = (
         result[
             "booking_value_local"
-        ].notna()
+        ]
+        .notna()
         &
         (
             result[
@@ -337,11 +447,30 @@ def add_validation_flags(
     )
 
     result[
+        "revenue_valid"
+    ] = (
+        result[
+            "revenue_local"
+        ]
+        .notna()
+    )
+
+    result[
+        "cost_valid"
+    ] = (
+        result[
+            "cost_local"
+        ]
+        .notna()
+    )
+
+    result[
         "booking_date_valid"
     ] = (
         result[
             "booking_date"
-        ].notna()
+        ]
+        .notna()
     )
 
     result[
@@ -349,11 +478,13 @@ def add_validation_flags(
     ] = (
         result[
             "travel_date"
-        ].notna()
+        ]
+        .notna()
         &
         result[
             "booking_date"
-        ].notna()
+        ]
+        .notna()
         &
         (
             result[
@@ -367,14 +498,17 @@ def add_validation_flags(
 
     result[
         "booking_status_valid"
-    ] = result[
-        "booking_status"
-    ].isin(
-        [
-            "Confirmed",
-            "Cancelled",
-            "Refunded",
+    ] = (
+        result[
+            "booking_status"
         ]
+        .isin(
+            [
+                "Confirmed",
+                "Cancelled",
+                "Refunded",
+            ]
+        )
     )
 
     return result
@@ -414,6 +548,13 @@ def rejection_reasons(
             "ORPHAN_CUSTOMER"
         )
 
+    elif not row[
+        "regional_customer_valid"
+    ]:
+        reasons.append(
+            "UNMAPPED_REGIONAL_CUSTOMER"
+        )
+
     if not row[
         "supplier_id_present"
     ]:
@@ -426,6 +567,13 @@ def rejection_reasons(
     ]:
         reasons.append(
             "ORPHAN_SUPPLIER"
+        )
+
+    elif not row[
+        "regional_supplier_valid"
+    ]:
+        reasons.append(
+            "UNMAPPED_REGIONAL_SUPPLIER"
         )
 
     if not row[
@@ -454,6 +602,20 @@ def rejection_reasons(
     ]:
         reasons.append(
             "INVALID_BOOKING_VALUE"
+        )
+
+    if not row[
+        "revenue_valid"
+    ]:
+        reasons.append(
+            "INVALID_REVENUE"
+        )
+
+    if not row[
+        "cost_valid"
+    ]:
+        reasons.append(
+            "INVALID_COST"
         )
 
     if not row[
@@ -545,6 +707,23 @@ def build_clean_dataset(
     )
 
     clean[
+        "margin_pct"
+    ] = (
+        clean[
+            "gross_margin_local"
+        ]
+        .div(
+            clean[
+                "revenue_local"
+            ]
+            .replace(
+                0,
+                pd.NA,
+            )
+        )
+    )
+
+    clean[
         "advance_purchase_days"
     ] = (
         clean[
@@ -561,7 +740,9 @@ def build_clean_dataset(
         "booking_date",
         "travel_date",
         "customer_id_local",
+        "regional_customer_id",
         "supplier_id_local",
+        "regional_supplier_id",
         "product_type_source",
         "regional_product",
         "booking_channel_source",
@@ -572,6 +753,7 @@ def build_clean_dataset(
         "revenue_local",
         "cost_local",
         "gross_margin_local",
+        "margin_pct",
         "advance_purchase_days",
         "booking_status",
         "source_system",
@@ -599,11 +781,17 @@ def build_quarantine_dataset(
         "source_country",
         "booking_id",
         "customer_id_local",
+        "regional_customer_id",
         "supplier_id_local",
+        "regional_supplier_id",
         "product_type_source",
+        "regional_product",
         "booking_channel_source",
+        "regional_channel",
         "transaction_currency",
         "booking_value_local",
+        "revenue_local",
+        "cost_local",
         "booking_date",
         "travel_date",
         "booking_status",
@@ -677,6 +865,193 @@ def build_rejection_summary(
     )
 
 
+def build_country_summary(
+    classified: pd.DataFrame,
+) -> pd.DataFrame:
+
+    summary = (
+        classified.groupby(
+            "source_country",
+            as_index=False,
+        )
+        .agg(
+            input_rows=(
+                "booking_id",
+                "size",
+            ),
+            accepted_rows=(
+                "record_status",
+                lambda values:
+                    int(
+                        (
+                            values
+                            == "ACCEPTED"
+                        ).sum()
+                    ),
+            ),
+            quarantined_rows=(
+                "record_status",
+                lambda values:
+                    int(
+                        (
+                            values
+                            == "QUARANTINED"
+                        ).sum()
+                    ),
+            ),
+        )
+    )
+
+    summary[
+        "acceptance_pct"
+    ] = (
+        summary[
+            "accepted_rows"
+        ]
+        / summary[
+            "input_rows"
+        ]
+        * 100
+    ).round(4)
+
+    summary[
+        "quarantine_pct"
+    ] = (
+        summary[
+            "quarantined_rows"
+        ]
+        / summary[
+            "input_rows"
+        ]
+        * 100
+    ).round(4)
+
+    return summary
+
+
+def validate_clean_dataset(
+    clean: pd.DataFrame,
+) -> None:
+
+    duplicate_ids = (
+        clean.duplicated(
+            subset=[
+                "source_country",
+                "booking_id",
+            ],
+            keep=False,
+        )
+        .sum()
+    )
+
+    if duplicate_ids > 0:
+        raise RuntimeError(
+            "Clean Silver contains "
+            f"{duplicate_ids} duplicate "
+            "booking ID records."
+        )
+
+    if (
+        clean[
+            "customer_id_local"
+        ]
+        .isna()
+        .any()
+    ):
+        raise RuntimeError(
+            "Clean Silver contains "
+            "missing local customer IDs."
+        )
+
+    if (
+        clean[
+            "regional_customer_id"
+        ]
+        .isna()
+        .any()
+    ):
+        raise RuntimeError(
+            "Clean Silver contains "
+            "missing regional customer IDs."
+        )
+
+    if (
+        clean[
+            "supplier_id_local"
+        ]
+        .isna()
+        .any()
+    ):
+        raise RuntimeError(
+            "Clean Silver contains "
+            "missing local supplier IDs."
+        )
+
+    if (
+        clean[
+            "regional_supplier_id"
+        ]
+        .isna()
+        .any()
+    ):
+        raise RuntimeError(
+            "Clean Silver contains "
+            "missing regional supplier IDs."
+        )
+
+    if (
+        clean[
+            "regional_product"
+        ]
+        .isna()
+        .any()
+    ):
+        raise RuntimeError(
+            "Clean Silver contains "
+            "unmapped regional products."
+        )
+
+    if (
+        clean[
+            "regional_channel"
+        ]
+        .isna()
+        .any()
+    ):
+        raise RuntimeError(
+            "Clean Silver contains "
+            "unmapped regional channels."
+        )
+
+    if (
+        clean[
+            "booking_value_local"
+        ]
+        < 0
+    ).any():
+        raise RuntimeError(
+            "Clean Silver contains "
+            "negative booking values."
+        )
+
+    invalid_dates = (
+        clean[
+            "travel_date"
+        ]
+        < clean[
+            "booking_date"
+        ]
+    ).sum()
+
+    if invalid_dates > 0:
+        raise RuntimeError(
+            "Clean Silver contains "
+            f"{invalid_dates} records "
+            "where travel date is earlier "
+            "than booking date."
+        )
+
+
 def main() -> None:
 
     SILVER_DIR.mkdir(
@@ -686,7 +1061,7 @@ def main() -> None:
 
     staging = load_staging()
 
-    raw_row_count = len(
+    input_row_count = len(
         staging
     )
 
@@ -707,6 +1082,10 @@ def main() -> None:
         staging,
         product_mapping,
         channel_mapping,
+    )
+
+    working = add_regional_master_ids(
+        working
     )
 
     working = add_reference_checks(
@@ -739,6 +1118,16 @@ def main() -> None:
         )
     )
 
+    country_summary = (
+        build_country_summary(
+            classified
+        )
+    )
+
+    validate_clean_dataset(
+        clean
+    )
+
     clean.to_parquet(
         SILVER_DIR
         / "bookings_clean.parquet",
@@ -757,17 +1146,23 @@ def main() -> None:
         index=False,
     )
 
+    country_summary.to_csv(
+        SILVER_DIR
+        / "silver_country_summary.csv",
+        index=False,
+    )
+
     accepted_count = len(
         clean
     )
 
-    rejected_count = len(
+    quarantined_count = len(
         quarantine
     )
 
     reconciled_count = (
         accepted_count
-        + rejected_count
+        + quarantined_count
     )
 
     print(
@@ -775,8 +1170,16 @@ def main() -> None:
     )
 
     print(
-        f"\nInput staging rows: "
-        f"{raw_row_count:,}"
+        "\nRow reconciliation"
+    )
+
+    print(
+        "------------------"
+    )
+
+    print(
+        f"Input staging rows: "
+        f"{input_row_count:,}"
     )
 
     print(
@@ -786,7 +1189,7 @@ def main() -> None:
 
     print(
         f"Quarantined rows:   "
-        f"{rejected_count:,}"
+        f"{quarantined_count:,}"
     )
 
     print(
@@ -794,47 +1197,42 @@ def main() -> None:
         f"{reconciled_count:,}"
     )
 
-    if reconciled_count != raw_row_count:
+    if (
+        reconciled_count
+        != input_row_count
+    ):
         raise RuntimeError(
-            "Row reconciliation failed."
+            "Row reconciliation failed. "
+            "Accepted + quarantined "
+            "does not equal input."
         )
 
     print(
-        "\nAccepted by country:"
+        "\nCountry summary"
     )
 
     print(
-        clean[
-            "source_country"
-        ]
-        .value_counts()
-        .sort_index()
-        .to_string()
+        "---------------"
     )
 
     print(
-        "\nQuarantined by country:"
-    )
-
-    if quarantine.empty:
-        print("None")
-
-    else:
-        print(
-            quarantine[
-                "source_country"
-            ]
-            .value_counts()
-            .sort_index()
-            .to_string()
+        country_summary.to_string(
+            index=False
         )
+    )
 
     print(
-        "\nRejection reasons:"
+        "\nRejection reasons"
+    )
+
+    print(
+        "-----------------"
     )
 
     if rejection_summary.empty:
-        print("None")
+        print(
+            "No rejected records."
+        )
 
     else:
         print(
@@ -842,6 +1240,44 @@ def main() -> None:
                 index=False
             )
         )
+
+    print(
+        "\nRegional master coverage"
+    )
+
+    print(
+        "------------------------"
+    )
+
+    print(
+        "Missing regional customer IDs "
+        "in accepted data:",
+        clean[
+            "regional_customer_id"
+        ]
+        .isna()
+        .sum(),
+    )
+
+    print(
+        "Missing regional supplier IDs "
+        "in accepted data:",
+        clean[
+            "regional_supplier_id"
+        ]
+        .isna()
+        .sum(),
+    )
+
+    print(
+        "\nSilver files written to:"
+    )
+
+    print(
+        SILVER_DIR.relative_to(
+            PROJECT_ROOT
+        )
+    )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,13 @@
+rule_id,domain,field_name,rule_type,severity,description,threshold_type,threshold_value
+DQ_BOOKING_001,booking,booking_id,completeness,critical,Booking ID must not be null,max_fail_count,0
+DQ_BOOKING_002,booking,booking_id,uniqueness,critical,Booking ID must be unique,max_fail_count,0
+DQ_BOOKING_003,booking,customer_id,completeness,high,Customer ID must not be null,max_fail_pct,0.10
+DQ_BOOKING_004,booking,supplier_id,completeness,high,Supplier ID must not be null,max_fail_pct,0.10
+DQ_BOOKING_005,booking,customer_id,referential_integrity,critical,Customer ID must exist in customer master,max_fail_pct,0.05
+DQ_BOOKING_006,booking,supplier_id,referential_integrity,critical,Supplier ID must exist in supplier master,max_fail_pct,0.05
+DQ_BOOKING_007,booking,currency,validity,critical,Currency must match expected local currency,max_fail_count,0
+DQ_BOOKING_008,booking,booking_value,validity,high,Booking value must not be negative,max_fail_count,0
+DQ_BOOKING_009,booking,travel_date,consistency,high,Travel date must not occur before booking date,max_fail_count,0
+DQ_BOOKING_010,booking,booking_status,validity,high,Booking status must be in approved list,max_fail_count,0
+DQ_BOOKING_011,booking,product_type,validity,medium,Product type must map to approved regional product,max_fail_pct,0.50
+DQ_BOOKING_012,booking,booking_channel,validity,medium,Booking channel must map to approved regional channel,max_fail_pct,0.50

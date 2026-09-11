@@ -1,24 +1,97 @@
 from __future__ import annotations
 
-from pathlib import Path
 import json
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from faker import Faker
 
 
+# ============================================================
+# PROJECT CONFIGURATION
+# ============================================================
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = PROJECT_ROOT / "config" / "project_config.json"
 
 RAW_DIR = PROJECT_ROOT / "data" / "raw"
-REFERENCE_DIR = PROJECT_ROOT / "data" / "reference"
+MY_DIR = RAW_DIR / "malaysia"
+SG_DIR = RAW_DIR / "singapore"
+ID_DIR = RAW_DIR / "indonesia"
+
+DOCS_DIR = PROJECT_ROOT / "docs"
+CONFIG_PATH = PROJECT_ROOT / "config" / "project_config.json"
+
+RANDOM_SEED = 42
+
+np.random.seed(RANDOM_SEED)
 
 fake = Faker()
-Faker.seed(42)
+Faker.seed(RANDOM_SEED)
 
+DEFAULT_START_DATE = "2024-09-01"
+DEFAULT_END_DATE = "2026-08-31"
 
-PRODUCTS = ["Air", "Hotel", "Ground", "Other"]
+COUNTRY_CONFIG = {
+    "MY": {
+        "country_name": "Malaysia",
+        "currency": "MYR",
+        "booking_rows": 80_000,
+        "customers": 320,
+        "suppliers": 80,
+    },
+    "SG": {
+        "country_name": "Singapore",
+        "currency": "SGD",
+        "booking_rows": 50_000,
+        "customers": 220,
+        "suppliers": 60,
+    },
+    "ID": {
+        "country_name": "Indonesia",
+        "currency": "IDR",
+        "booking_rows": 50_000,
+        "customers": 260,
+        "suppliers": 70,
+    },
+}
+
+PRODUCTS = [
+    "Air",
+    "Hotel",
+    "Ground",
+    "Other",
+]
+
+PRODUCT_PROBABILITIES = [
+    0.54,
+    0.29,
+    0.11,
+    0.06,
+]
+
+CHANNELS = [
+    "Online",
+    "Offline",
+]
+
+CHANNEL_PROBABILITIES = [
+    0.58,
+    0.42,
+]
+
+BOOKING_STATUSES = [
+    "Confirmed",
+    "Cancelled",
+    "Refunded",
+]
+
+STATUS_PROBABILITIES = [
+    0.94,
+    0.04,
+    0.02,
+]
+
 DESTINATIONS = [
     "MY",
     "SG",
@@ -32,302 +105,432 @@ DESTINATIONS = [
     "CN",
 ]
 
-CUSTOMER_COUNTS = {
-    "MY": 320,
-    "SG": 220,
-    "ID": 260,
-}
+CUSTOMER_SEGMENTS = [
+    "Strategic",
+    "Enterprise",
+    "Mid-Market",
+    "SME",
+]
 
-SUPPLIER_COUNTS = {
-    "MY": 80,
-    "SG": 60,
-    "ID": 70,
-}
+INDUSTRIES = [
+    "Technology",
+    "Manufacturing",
+    "Financial Services",
+    "Professional Services",
+    "Healthcare",
+    "Energy",
+    "Retail",
+    "Education",
+    "Government",
+    "Logistics",
+]
+
+SUPPLIER_TYPES = [
+    "Airline",
+    "Hotel",
+    "Ground Transport",
+    "Travel Service",
+]
 
 
-def load_config() -> dict:
-    with CONFIG_PATH.open("r", encoding="utf-8") as file:
-        return json.load(file)
+# ============================================================
+# DIRECTORY SETUP
+# ============================================================
 
 
-def make_customer_master(
+def ensure_directories() -> None:
+    for directory in [
+        MY_DIR,
+        SG_DIR,
+        ID_DIR,
+        DOCS_DIR,
+    ]:
+        directory.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+
+
+# ============================================================
+# PROJECT DATE CONFIGURATION
+# ============================================================
+
+
+def load_project_dates() -> tuple[pd.Timestamp, pd.Timestamp]:
+    start_date = pd.Timestamp(DEFAULT_START_DATE)
+    end_date = pd.Timestamp(DEFAULT_END_DATE)
+
+    if CONFIG_PATH.exists():
+        try:
+            config = json.loads(
+                CONFIG_PATH.read_text(
+                    encoding="utf-8"
+                )
+            )
+
+            start_date = pd.Timestamp(
+                config.get(
+                    "start_date",
+                    DEFAULT_START_DATE,
+                )
+            )
+
+            end_date = pd.Timestamp(
+                config.get(
+                    "end_date",
+                    DEFAULT_END_DATE,
+                )
+            )
+
+        except Exception:
+            pass
+
+    return start_date, end_date
+
+
+# ============================================================
+# RANDOM HELPERS
+# ============================================================
+
+
+def random_dates(
+    start_date: pd.Timestamp,
+    end_date: pd.Timestamp,
+    n: int,
+) -> pd.Series:
+    start_ns = start_date.value
+    end_ns = end_date.value
+
+    values = np.random.randint(
+        start_ns,
+        end_ns + 1,
+        size=n,
+        dtype=np.int64,
+    )
+
+    return pd.Series(
+        pd.to_datetime(values)
+    ).dt.normalize()
+
+
+def sample_indices(
+    df: pd.DataFrame,
+    fraction: float,
+    minimum: int = 1,
+) -> np.ndarray:
+    count = max(
+        minimum,
+        int(
+            round(
+                len(df) * fraction
+            )
+        ),
+    )
+
+    count = min(
+        count,
+        len(df),
+    )
+
+    return np.random.choice(
+        df.index.to_numpy(),
+        size=count,
+        replace=False,
+    )
+
+
+# ============================================================
+# CUSTOMER MASTER GENERATION
+# ============================================================
+
+
+def create_customer_master(
     country_code: str,
-    count: int,
-    rng: np.random.Generator,
+    customer_count: int,
 ) -> pd.DataFrame:
-    records = []
+    rows = []
 
-    segments = ["Enterprise", "Mid-Market", "SME", "Government"]
-    industries = [
-        "Technology",
-        "Financial Services",
-        "Manufacturing",
-        "Energy",
-        "Healthcare",
-        "Professional Services",
-        "Education",
-        "Government",
-        "Retail",
-        "Logistics",
-    ]
-
-    for i in range(1, count + 1):
-        customer_id = f"{country_code}-C{i:04d}"
-
-        records.append(
+    for number in range(
+        1,
+        customer_count + 1,
+    ):
+        rows.append(
             {
-                "customer_id": customer_id,
-                "customer_name": fake.company(),
-                "segment": rng.choice(
-                    segments,
-                    p=[0.22, 0.34, 0.30, 0.14],
+                "customer_id": (
+                    f"{country_code}-CUST-{number:04d}"
                 ),
-                "industry": rng.choice(industries),
-                "account_manager": fake.name(),
-                "contract_start_date": pd.Timestamp(
-                    rng.choice(
-                        pd.date_range(
-                            "2020-01-01",
-                            "2025-12-31",
-                            freq="D",
-                        )
-                    )
-                ).date(),
-                "contract_end_date": pd.Timestamp(
-                    rng.choice(
-                        pd.date_range(
-                            "2026-09-01",
-                            "2029-12-31",
-                            freq="D",
-                        )
-                    )
-                ).date(),
-                "status": rng.choice(
-                    ["Active", "Inactive"],
-                    p=[0.94, 0.06],
+                "customer_name": (
+                    f"{fake.company()} {country_code}"
+                ),
+                "segment": np.random.choice(
+                    CUSTOMER_SEGMENTS
+                ),
+                "industry": np.random.choice(
+                    INDUSTRIES
+                ),
+                "customer_status": np.random.choice(
+                    [
+                        "Active",
+                        "Inactive",
+                    ],
+                    p=[
+                        0.96,
+                        0.04,
+                    ],
                 ),
             }
         )
 
-    return pd.DataFrame(records)
+    return pd.DataFrame(rows)
 
 
-def make_supplier_master(
+# ============================================================
+# SUPPLIER MASTER GENERATION
+# ============================================================
+
+
+def create_supplier_master(
     country_code: str,
-    count: int,
-    rng: np.random.Generator,
+    supplier_count: int,
 ) -> pd.DataFrame:
-    records = []
+    rows = []
 
-    supplier_types = ["Air", "Hotel", "Ground", "Other"]
-
-    for i in range(1, count + 1):
-        supplier_type = rng.choice(
-            supplier_types,
-            p=[0.35, 0.35, 0.20, 0.10],
-        )
-
-        records.append(
+    for number in range(
+        1,
+        supplier_count + 1,
+    ):
+        rows.append(
             {
-                "supplier_id": f"{country_code}-S{i:04d}",
-                "supplier_name": fake.company(),
-                "supplier_type": supplier_type,
-                "preferred_supplier_flag": rng.choice(
-                    ["Y", "N"],
-                    p=[0.45, 0.55],
+                "supplier_id": (
+                    f"{country_code}-SUP-{number:03d}"
                 ),
-                "country": country_code,
-                "status": rng.choice(
-                    ["Active", "Inactive"],
-                    p=[0.97, 0.03],
+                "supplier_name": (
+                    f"Synthetic Supplier "
+                    f"{country_code} "
+                    f"{number:03d}"
+                ),
+                "supplier_type": np.random.choice(
+                    SUPPLIER_TYPES
+                ),
+                "preferred_flag": np.random.choice(
+                    [
+                        "Y",
+                        "N",
+                    ],
+                    p=[
+                        0.70,
+                        0.30,
+                    ],
                 ),
             }
         )
 
-    return pd.DataFrame(records)
+    return pd.DataFrame(rows)
 
 
-def make_booking_data(
+# ============================================================
+# CLEAN SYNTHETIC BOOKING GENERATION
+# ============================================================
+
+
+def generate_clean_bookings(
     country_code: str,
     row_count: int,
     customers: pd.DataFrame,
     suppliers: pd.DataFrame,
-    config: dict,
-    rng: np.random.Generator,
+    start_date: pd.Timestamp,
+    end_date: pd.Timestamp,
 ) -> pd.DataFrame:
-    start_date = pd.Timestamp(config["start_date"])
-    end_date = pd.Timestamp(config["end_date"])
-
-    number_of_days = (end_date - start_date).days + 1
-
-    booking_dates = start_date + pd.to_timedelta(
-        rng.integers(0, number_of_days, size=row_count),
-        unit="D",
+    booking_dates = random_dates(
+        start_date=start_date,
+        end_date=end_date,
+        n=row_count,
     )
 
-    advance_days = np.maximum(
+    advance_purchase_days = np.random.gamma(
+        shape=2.4,
+        scale=8.0,
+        size=row_count,
+    )
+
+    advance_purchase_days = np.clip(
+        np.round(
+            advance_purchase_days
+        ),
         0,
-        rng.gamma(
-            shape=2.2,
-            scale=8.0,
-            size=row_count,
-        ).astype(int),
+        180,
+    ).astype(int)
+
+    travel_dates = (
+        booking_dates
+        + pd.to_timedelta(
+            advance_purchase_days,
+            unit="D",
+        )
     )
 
-    travel_dates = booking_dates + pd.to_timedelta(
-        advance_days,
-        unit="D",
-    )
-
-    product_types = rng.choice(
+    products = np.random.choice(
         PRODUCTS,
         size=row_count,
-        p=[0.54, 0.29, 0.11, 0.06],
+        p=PRODUCT_PROBABILITIES,
     )
 
-    customer_ids = rng.choice(
-        customers["customer_id"].to_numpy(),
+    channels = np.random.choice(
+        CHANNELS,
+        size=row_count,
+        p=CHANNEL_PROBABILITIES,
+    )
+
+    statuses = np.random.choice(
+        BOOKING_STATUSES,
+        size=row_count,
+        p=STATUS_PROBABILITIES,
+    )
+
+    booking_value = np.random.lognormal(
+        mean=7.7,
+        sigma=0.80,
         size=row_count,
     )
 
-    supplier_ids = []
+    if country_code == "SG":
+        booking_value *= 0.72
 
-    supplier_lookup = {
-        product: suppliers.loc[
-            suppliers["supplier_type"] == product,
-            "supplier_id",
-        ].to_numpy()
-        for product in PRODUCTS
-    }
+    elif country_code == "ID":
+        booking_value *= 5_500.0
 
-    all_supplier_ids = suppliers["supplier_id"].to_numpy()
-
-    for product in product_types:
-        candidates = supplier_lookup.get(product)
-
-        if candidates is None or len(candidates) == 0:
-            candidates = all_supplier_ids
-
-        supplier_ids.append(rng.choice(candidates))
-
-    local_currency = config["countries"][country_code]["local_currency"]
-
-    booking_value = rng.lognormal(
-        mean=7.6,
-        sigma=0.85,
-        size=row_count,
-    )
-
-    if country_code == "ID":
-        booking_value *= 3500
-
-    elif country_code == "SG":
-        booking_value *= 0.75
-
-    revenue_rate = rng.uniform(
+    revenue_rate = np.random.uniform(
         0.06,
         0.16,
         size=row_count,
     )
 
-    base_revenue = booking_value * revenue_rate
+    revenue = (
+        booking_value
+        * revenue_rate
+    )
 
-    cost_ratio = rng.uniform(
+    cost_ratio = np.random.uniform(
         0.55,
         0.88,
         size=row_count,
     )
 
-    base_cost = base_revenue * cost_ratio
-
-    status = rng.choice(
-        ["Confirmed", "Cancelled", "Refunded"],
-        size=row_count,
-        p=[0.94, 0.04, 0.02],
+    cost = (
+        revenue
+        * cost_ratio
     )
 
-    revenue = np.where(
-        status == "Confirmed",
-        base_revenue,
-        np.where(
-            status == "Refunded",
-            -base_revenue,
-            0.0,
-        ),
+    cancelled_mask = (
+        statuses == "Cancelled"
     )
 
-    cost = np.where(
-        status == "Confirmed",
-        base_cost,
-        np.where(
-            status == "Refunded",
-            -base_cost,
-            0.0,
-        ),
+    revenue[
+        cancelled_mask
+    ] = 0.0
+
+    cost[
+        cancelled_mask
+    ] = 0.0
+
+    refunded_mask = (
+        statuses == "Refunded"
     )
 
-    booking_channel = rng.choice(
-        ["Online", "Offline"],
-        size=row_count,
-        p=[0.58, 0.42],
+    revenue[
+        refunded_mask
+    ] = -np.abs(
+        revenue[
+            refunded_mask
+        ]
     )
 
-    dataframe = pd.DataFrame(
+    cost[
+        refunded_mask
+    ] = -np.abs(
+        cost[
+            refunded_mask
+        ]
+    )
+
+    bookings = pd.DataFrame(
         {
             "booking_id": [
-                f"{country_code}-B{i:08d}"
-                for i in range(1, row_count + 1)
+                (
+                    f"{country_code}-"
+                    f"BK-{number:07d}"
+                )
+                for number in range(
+                    1,
+                    row_count + 1,
+                )
             ],
             "booking_date": booking_dates,
             "travel_date": travel_dates,
-            "customer_id": customer_ids,
-            "supplier_id": supplier_ids,
-            "product_type": product_types,
-            "booking_channel": booking_channel,
-            "destination_country": rng.choice(
+            "customer_id": np.random.choice(
+                customers[
+                    "customer_id"
+                ],
+                size=row_count,
+            ),
+            "supplier_id": np.random.choice(
+                suppliers[
+                    "supplier_id"
+                ],
+                size=row_count,
+            ),
+            "product_type": products,
+            "booking_channel": channels,
+            "destination_country": np.random.choice(
                 DESTINATIONS,
                 size=row_count,
             ),
-            "currency": local_currency,
-            "booking_value": np.round(booking_value, 2),
-            "revenue": np.round(revenue, 2),
-            "cost": np.round(cost, 2),
-            "booking_status": status,
-            "agent_id": rng.choice(
-                [
-                    "AG001",
-                    "AG002",
-                    "AG003",
-                    "AG004",
-                    "AG005",
-                    None,
-                ],
-                size=row_count,
-                p=[
-                    0.12,
-                    0.12,
-                    0.12,
-                    0.12,
-                    0.12,
-                    0.40,
-                ],
+            "currency": COUNTRY_CONFIG[
+                country_code
+            ][
+                "currency"
+            ],
+            "booking_value": np.round(
+                booking_value,
+                2,
             ),
+            "revenue": np.round(
+                revenue,
+                2,
+            ),
+            "cost": np.round(
+                cost,
+                2,
+            ),
+            "booking_status": statuses,
         }
     )
 
-    return dataframe
+    return bookings
 
 
-def make_finance_data(
+# ============================================================
+# FINANCE SOURCE GENERATION
+# ============================================================
+
+
+def create_finance_truth(
     bookings: pd.DataFrame,
     country_code: str,
-    rng: np.random.Generator,
 ) -> pd.DataFrame:
     working = bookings.copy()
 
-    working["finance_month"] = (
-        pd.to_datetime(working["booking_date"])
-        .dt.to_period("M")
+    working[
+        "finance_month"
+    ] = (
+        pd.to_datetime(
+            working[
+                "booking_date"
+            ]
+        )
+        .dt.to_period(
+            "M"
+        )
         .dt.to_timestamp()
     )
 
@@ -337,304 +540,520 @@ def make_finance_data(
             as_index=False,
         )
         .agg(
-            revenue=("revenue", "sum"),
-            cost=("cost", "sum"),
-            transaction_count=("booking_id", "nunique"),
+            revenue=(
+                "revenue",
+                "sum",
+            ),
+            cost=(
+                "cost",
+                "sum",
+            ),
+            transaction_count=(
+                "booking_id",
+                "count",
+            ),
         )
     )
 
-    finance["gross_margin"] = (
-        finance["revenue"] - finance["cost"]
+    finance[
+        "gross_margin"
+    ] = (
+        finance[
+            "revenue"
+        ]
+        - finance[
+            "cost"
+        ]
     )
 
-    # Deliberate synthetic finance adjustments.
-    revenue_adjustment = rng.normal(
-        0.0,
-        0.0025,
+    revenue_adjustment = np.random.normal(
+        loc=1.0,
+        scale=0.004,
         size=len(finance),
     )
 
-    cost_adjustment = rng.normal(
-        0.0,
-        0.0025,
+    cost_adjustment = np.random.normal(
+        loc=1.0,
+        scale=0.004,
         size=len(finance),
     )
 
-    finance["revenue"] *= 1 + revenue_adjustment
-    finance["cost"] *= 1 + cost_adjustment
-
-    finance["gross_margin"] = (
-        finance["revenue"] - finance["cost"]
+    transaction_adjustment = np.random.choice(
+        [
+            -2,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            2,
+        ],
+        size=len(finance),
     )
 
-    finance.insert(
-        1,
-        "country",
-        country_code,
+    finance[
+        "revenue"
+    ] = np.round(
+        finance[
+            "revenue"
+        ]
+        * revenue_adjustment,
+        2,
     )
 
-    monetary_columns = [
-        "revenue",
-        "cost",
-        "gross_margin",
+    finance[
+        "cost"
+    ] = np.round(
+        finance[
+            "cost"
+        ]
+        * cost_adjustment,
+        2,
+    )
+
+    finance[
+        "gross_margin"
+    ] = np.round(
+        finance[
+            "revenue"
+        ]
+        - finance[
+            "cost"
+        ],
+        2,
+    )
+
+    finance[
+        "transaction_count"
+    ] = (
+        finance[
+            "transaction_count"
+        ]
+        + transaction_adjustment
+    ).astype(int)
+
+    finance[
+        "country"
+    ] = country_code
+
+    return finance[
+        [
+            "finance_month",
+            "country",
+            "revenue",
+            "cost",
+            "gross_margin",
+            "transaction_count",
+        ]
     ]
 
-    finance[monetary_columns] = finance[
-        monetary_columns
-    ].round(2)
 
-    return finance
-
-
-def add_defect(
-    manifest: list,
-    country: str,
-    dataset: str,
-    defect_type: str,
-    count: int,
-    description: str,
-) -> None:
-    manifest.append(
-        {
-            "country_code": country,
-            "dataset": dataset,
-            "defect_type": defect_type,
-            "injected_count": count,
-            "description": description,
-        }
-    )
+# ============================================================
+# DELIBERATE DATA QUALITY DEFECTS
+# ============================================================
 
 
 def inject_booking_defects(
-    dataframe: pd.DataFrame,
+    bookings: pd.DataFrame,
     country_code: str,
-    rng: np.random.Generator,
-    manifest: list,
-) -> pd.DataFrame:
-    df = dataframe.copy()
+    valid_customers: set[str],
+    valid_suppliers: set[str],
+) -> tuple[pd.DataFrame, list[dict]]:
+    df = bookings.copy()
+    manifest: list[dict] = []
 
-    n = len(df)
-
-    defect_counts = {
-        "missing_customer": max(5, int(n * 0.0003)),
-        "missing_supplier": max(5, int(n * 0.0003)),
-        "orphan_customer": max(5, int(n * 0.0002)),
-        "orphan_supplier": max(5, int(n * 0.0002)),
-        "negative_value": max(5, int(n * 0.0002)),
-        "invalid_currency": max(5, int(n * 0.0002)),
-        "bad_travel_date": max(5, int(n * 0.0003)),
-        "invalid_status": max(5, int(n * 0.0002)),
-        "product_alias": max(10, int(n * 0.0005)),
-    }
-
-    available_indices = np.arange(n)
-    rng.shuffle(available_indices)
-
-    pointer = 0
-
-    selected = {}
-
-    for defect_name, defect_count in defect_counts.items():
-        selected[defect_name] = available_indices[
-            pointer : pointer + defect_count
-        ]
-        pointer += defect_count
+    indices = sample_indices(
+        df,
+        fraction=0.00030,
+    )
 
     df.loc[
-        selected["missing_customer"],
+        indices,
         "customer_id",
-    ] = None
+    ] = pd.NA
 
-    add_defect(
-        manifest,
-        country_code,
-        "booking",
-        "missing_customer_id",
-        defect_counts["missing_customer"],
-        "Customer identifier deliberately set to null.",
+    manifest.append(
+        {
+            "country": country_code,
+            "defect": "MISSING_CUSTOMER_ID",
+            "records_injected": len(indices),
+        }
+    )
+
+    indices = sample_indices(
+        df,
+        fraction=0.00030,
     )
 
     df.loc[
-        selected["missing_supplier"],
+        indices,
         "supplier_id",
-    ] = None
+    ] = pd.NA
 
-    add_defect(
-        manifest,
-        country_code,
-        "booking",
-        "missing_supplier_id",
-        defect_counts["missing_supplier"],
-        "Supplier identifier deliberately set to null.",
+    manifest.append(
+        {
+            "country": country_code,
+            "defect": "MISSING_SUPPLIER_ID",
+            "records_injected": len(indices),
+        }
+    )
+
+    indices = sample_indices(
+        df,
+        fraction=0.00020,
+    )
+
+    for sequence, index in enumerate(
+        indices,
+        start=1,
+    ):
+        orphan_value = (
+            f"{country_code}-"
+            f"ORPHAN-CUST-"
+            f"{sequence:03d}"
+        )
+
+        if orphan_value not in valid_customers:
+            df.at[
+                index,
+                "customer_id",
+            ] = orphan_value
+
+    manifest.append(
+        {
+            "country": country_code,
+            "defect": "ORPHAN_CUSTOMER",
+            "records_injected": len(indices),
+        }
+    )
+
+    indices = sample_indices(
+        df,
+        fraction=0.00020,
+    )
+
+    for sequence, index in enumerate(
+        indices,
+        start=1,
+    ):
+        orphan_value = (
+            f"{country_code}-"
+            f"ORPHAN-SUP-"
+            f"{sequence:03d}"
+        )
+
+        if orphan_value not in valid_suppliers:
+            df.at[
+                index,
+                "supplier_id",
+            ] = orphan_value
+
+    manifest.append(
+        {
+            "country": country_code,
+            "defect": "ORPHAN_SUPPLIER",
+            "records_injected": len(indices),
+        }
+    )
+
+    indices = sample_indices(
+        df,
+        fraction=0.00020,
     )
 
     df.loc[
-        selected["orphan_customer"],
-        "customer_id",
-    ] = [
-        f"{country_code}-UNKNOWN-C{i:04d}"
-        for i in range(defect_counts["orphan_customer"])
-    ]
-
-    add_defect(
-        manifest,
-        country_code,
-        "booking",
-        "orphan_customer",
-        defect_counts["orphan_customer"],
-        "Booking references customer absent from customer master.",
-    )
-
-    df.loc[
-        selected["orphan_supplier"],
-        "supplier_id",
-    ] = [
-        f"{country_code}-UNKNOWN-S{i:04d}"
-        for i in range(defect_counts["orphan_supplier"])
-    ]
-
-    add_defect(
-        manifest,
-        country_code,
-        "booking",
-        "orphan_supplier",
-        defect_counts["orphan_supplier"],
-        "Booking references supplier absent from supplier master.",
-    )
-
-    df.loc[
-        selected["negative_value"],
-        "booking_value",
-    ] *= -1
-
-    add_defect(
-        manifest,
-        country_code,
-        "booking",
-        "unexpected_negative_booking_value",
-        defect_counts["negative_value"],
-        "Booking value deliberately changed to negative.",
-    )
-
-    df.loc[
-        selected["invalid_currency"],
+        indices,
         "currency",
     ] = "XXX"
 
-    add_defect(
-        manifest,
-        country_code,
-        "booking",
-        "invalid_currency",
-        defect_counts["invalid_currency"],
-        "Invalid ISO-style currency code inserted.",
+    manifest.append(
+        {
+            "country": country_code,
+            "defect": "INVALID_CURRENCY",
+            "records_injected": len(indices),
+        }
     )
 
-    bad_date_indices = selected["bad_travel_date"]
+    indices = sample_indices(
+        df,
+        fraction=0.00020,
+    )
 
     df.loc[
-        bad_date_indices,
+        indices,
+        "booking_value",
+    ] = -np.abs(
+        df.loc[
+            indices,
+            "booking_value",
+        ]
+    )
+
+    manifest.append(
+        {
+            "country": country_code,
+            "defect": "NEGATIVE_BOOKING_VALUE",
+            "records_injected": len(indices),
+        }
+    )
+
+    indices = sample_indices(
+        df,
+        fraction=0.00020,
+    )
+
+    df.loc[
+        indices,
+        "booking_status",
+    ] = "UNKNOWN"
+
+    manifest.append(
+        {
+            "country": country_code,
+            "defect": "INVALID_BOOKING_STATUS",
+            "records_injected": len(indices),
+        }
+    )
+
+    indices = sample_indices(
+        df,
+        fraction=0.00030,
+    )
+
+    df.loc[
+        indices,
         "travel_date",
     ] = (
         pd.to_datetime(
             df.loc[
-                bad_date_indices,
+                indices,
                 "booking_date",
             ]
         )
-        - pd.Timedelta(days=10)
+        - pd.to_timedelta(
+            5,
+            unit="D",
+        )
     )
 
-    add_defect(
-        manifest,
-        country_code,
-        "booking",
-        "travel_before_booking",
-        defect_counts["bad_travel_date"],
-        "Travel date deliberately occurs before booking date.",
+    manifest.append(
+        {
+            "country": country_code,
+            "defect": "INVALID_TRAVEL_DATE",
+            "records_injected": len(indices),
+        }
     )
+
+    indices = sample_indices(
+        df,
+        fraction=0.00050,
+    )
+
+    if country_code == "MY":
+        invalid_products = [
+            "AIR",
+            "Lodging",
+            "Misc",
+            "Car",
+        ]
+
+    elif country_code == "SG":
+        invalid_products = [
+            "Air Ticket",
+            "AIR",
+            "Misc",
+            "Lodging",
+            "Car",
+        ]
+
+    else:
+        invalid_products = [
+            "Flight",
+            "Accommodation",
+            "Transport",
+            "Misc",
+        ]
 
     df.loc[
-        selected["invalid_status"],
-        "booking_status",
-    ] = "UNKNOWN"
-
-    add_defect(
-        manifest,
-        country_code,
-        "booking",
-        "invalid_booking_status",
-        defect_counts["invalid_status"],
-        "Invalid booking status inserted.",
-    )
-
-    alias_values = {
-        "MY": ["Flight", "HOTEL", "Car", "Misc"],
-        "SG": ["AIR", "Lodging", "Car", "Misc"],
-        "ID": ["Flight", "Accommodation", "Transport", "Misc"],
-    }
-
-    product_alias_indices = selected["product_alias"]
-
-    df.loc[
-        product_alias_indices,
+        indices,
         "product_type",
-    ] = rng.choice(
-        alias_values[country_code],
-        size=len(product_alias_indices),
+    ] = np.random.choice(
+        invalid_products,
+        size=len(indices),
     )
 
-    add_defect(
-        manifest,
-        country_code,
-        "booking",
-        "inconsistent_product_category",
-        defect_counts["product_alias"],
-        "Alternative product descriptions deliberately inserted.",
+    manifest.append(
+        {
+            "country": country_code,
+            "defect": "UNMAPPED_PRODUCT",
+            "records_injected": len(indices),
+        }
     )
 
     duplicate_count = max(
-        10,
-        int(n * 0.0005),
+        1,
+        int(
+            round(
+                len(df)
+                * 0.00050
+            )
+        ),
     )
 
-    duplicate_indices = rng.choice(
-        df.index,
-        size=duplicate_count,
-        replace=False,
-    )
+    country_seed = {
+        "MY": 1,
+        "SG": 2,
+        "ID": 3,
+    }
 
-    duplicates = df.loc[
-        duplicate_indices
-    ].copy()
+    duplicate_rows = (
+        df.sample(
+            n=duplicate_count,
+            random_state=(
+                RANDOM_SEED
+                + country_seed[
+                    country_code
+                ]
+            ),
+        )
+        .copy()
+    )
 
     df = pd.concat(
-        [df, duplicates],
+        [
+            df,
+            duplicate_rows,
+        ],
         ignore_index=True,
     )
 
-    add_defect(
-        manifest,
-        country_code,
-        "booking",
-        "duplicate_transaction",
-        duplicate_count,
-        "Exact duplicate transaction rows appended.",
+    manifest.append(
+        {
+            "country": country_code,
+            "defect": "DUPLICATE_ROWS_APPENDED",
+            "records_injected": duplicate_count,
+        }
     )
 
-    return df
+    return df, manifest
 
 
-def convert_malaysia_schema(
-    bookings: pd.DataFrame,
+# ============================================================
+# COUNTRY-SPECIFIC TERMINOLOGY
+# ============================================================
+
+
+def apply_country_terminology(
+    df: pd.DataFrame,
+    country_code: str,
 ) -> pd.DataFrame:
-    return bookings.copy()
+    result = df.copy()
+
+    if country_code == "MY":
+        product_mapping = {
+            "Air": "Air",
+            "Hotel": "Hotel",
+            "Ground": "Ground",
+            "Other": "Other",
+        }
+
+        channel_mapping = {
+            "Online": "Online",
+            "Offline": "Offline",
+        }
+
+    elif country_code == "SG":
+        product_mapping = {
+            "Air": "Flight",
+            "Hotel": "Accommodation",
+            "Ground": "Transport",
+            "Other": "Other Service",
+        }
+
+        channel_mapping = {
+            "Online": "OBT",
+            "Offline": "Agent",
+        }
+
+    elif country_code == "ID":
+        product_mapping = {
+            "Air": "AIR",
+            "Hotel": "HOTEL",
+            "Ground": "GROUND",
+            "Other": "OTHER",
+        }
+
+        channel_mapping = {
+            "Online": "ONLINE",
+            "Offline": "MANUAL",
+        }
+
+    else:
+        raise ValueError(
+            f"Unsupported country: {country_code}"
+        )
+
+    result[
+        "product_type"
+    ] = (
+        result[
+            "product_type"
+        ]
+        .replace(
+            product_mapping
+        )
+    )
+
+    result[
+        "booking_channel"
+    ] = (
+        result[
+            "booking_channel"
+        ]
+        .replace(
+            channel_mapping
+        )
+    )
+
+    return result
 
 
-def convert_singapore_schema(
-    bookings: pd.DataFrame,
+# ============================================================
+# MALAYSIA RAW BOOKING SCHEMA
+# ============================================================
+
+
+def convert_my_booking_schema(
+    df: pd.DataFrame,
 ) -> pd.DataFrame:
-    df = bookings.rename(
+    return df[
+        [
+            "booking_id",
+            "booking_date",
+            "travel_date",
+            "customer_id",
+            "supplier_id",
+            "product_type",
+            "booking_channel",
+            "destination_country",
+            "currency",
+            "booking_value",
+            "revenue",
+            "cost",
+            "booking_status",
+        ]
+    ].copy()
+
+
+# ============================================================
+# SINGAPORE RAW BOOKING SCHEMA
+# ============================================================
+
+
+def convert_sg_booking_schema(
+    df: pd.DataFrame,
+) -> pd.DataFrame:
+    result = df.rename(
         columns={
             "booking_id": "transaction_ref",
             "booking_date": "txn_date",
@@ -652,24 +1071,34 @@ def convert_singapore_schema(
         }
     ).copy()
 
-    df["booking_method"] = df[
-        "booking_method"
-    ].replace(
-        {
-            "Online": "OBT",
-            "Offline": "Agent",
-        }
-    )
+    return result[
+        [
+            "transaction_ref",
+            "txn_date",
+            "departure_date",
+            "client_code",
+            "vendor_code",
+            "service_category",
+            "booking_method",
+            "destination",
+            "txn_currency",
+            "gross_sales",
+            "net_revenue",
+            "direct_cost",
+            "status",
+        ]
+    ]
 
-    return df.drop(
-        columns=["agent_id"]
-    )
+
+# ============================================================
+# INDONESIA RAW BOOKING SCHEMA
+# ============================================================
 
 
-def convert_indonesia_schema(
-    bookings: pd.DataFrame,
+def convert_id_booking_schema(
+    df: pd.DataFrame,
 ) -> pd.DataFrame:
-    df = bookings.rename(
+    result = df.rename(
         columns={
             "booking_id": "booking_no",
             "booking_date": "created_at",
@@ -687,88 +1116,300 @@ def convert_indonesia_schema(
         }
     ).copy()
 
-    df["channel"] = df[
-        "channel"
-    ].replace(
-        {
-            "Online": "ONLINE",
-            "Offline": "MANUAL",
+    return result[
+        [
+            "booking_no",
+            "created_at",
+            "journey_date",
+            "account_no",
+            "provider_code",
+            "travel_product",
+            "channel",
+            "destination",
+            "currency_code",
+            "total_booking_amount",
+            "service_revenue",
+            "supplier_cost",
+            "booking_state",
+        ]
+    ]
+
+
+# ============================================================
+# CUSTOMER MASTER FILES
+# ============================================================
+
+
+def write_customer_files(
+    customer_data: dict[str, pd.DataFrame],
+) -> None:
+
+    # Malaysia
+    my = customer_data[
+        "MY"
+    ].copy()
+
+    my[
+        "account_manager"
+    ] = [
+        f"MY Account Manager {(i % 12) + 1:02d}"
+        for i in range(len(my))
+    ]
+
+    my = my.rename(
+        columns={
+            "customer_status": "status",
         }
     )
 
-    return df.drop(
-        columns=["agent_id"]
+    my = my[
+        [
+            "customer_id",
+            "customer_name",
+            "segment",
+            "industry",
+            "account_manager",
+            "status",
+        ]
+    ]
+
+    my.to_excel(
+        MY_DIR / "customers.xlsx",
+        index=False,
     )
 
+    # Singapore
+    sg = customer_data[
+        "SG"
+    ].copy()
 
-def convert_singapore_customer_schema(
-    customers: pd.DataFrame,
-) -> pd.DataFrame:
-    return customers.rename(
+    sg[
+        "relationship_manager"
+    ] = [
+        f"SG Relationship Manager {(i % 10) + 1:02d}"
+        for i in range(len(sg))
+    ]
+
+    sg = sg.rename(
         columns={
             "customer_id": "client_code",
             "customer_name": "client_name",
             "segment": "customer_tier",
             "industry": "sector",
-            "account_manager": "relationship_manager",
-            "contract_start_date": "effective_from",
-            "contract_end_date": "effective_to",
-            "status": "active_flag",
+            "customer_status": "active_flag",
         }
     )
 
+    sg = sg[
+        [
+            "client_code",
+            "client_name",
+            "customer_tier",
+            "sector",
+            "relationship_manager",
+            "active_flag",
+        ]
+    ]
 
-def convert_indonesia_customer_schema(
-    customers: pd.DataFrame,
-) -> pd.DataFrame:
-    return customers.rename(
+    sg.to_csv(
+        SG_DIR / "client_master.csv",
+        index=False,
+    )
+
+    # Indonesia
+    idn = customer_data[
+        "ID"
+    ].copy()
+
+    idn[
+        "account_owner"
+    ] = [
+        f"ID Account Owner {(i % 11) + 1:02d}"
+        for i in range(len(idn))
+    ]
+
+    idn = idn.rename(
         columns={
             "customer_id": "account_no",
             "customer_name": "account_name",
             "segment": "account_segment",
             "industry": "business_sector",
-            "account_manager": "account_owner",
-            "contract_start_date": "start_date",
-            "contract_end_date": "end_date",
-            "status": "account_status",
+            "customer_status": "account_status",
         }
     )
 
+    idn = idn[
+        [
+            "account_no",
+            "account_name",
+            "account_segment",
+            "business_sector",
+            "account_owner",
+            "account_status",
+        ]
+    ]
 
-def convert_singapore_supplier_schema(
-    suppliers: pd.DataFrame,
-) -> pd.DataFrame:
-    return suppliers.rename(
+    idn.to_excel(
+        ID_DIR / "accounts.xlsx",
+        index=False,
+    )
+
+
+# ============================================================
+# SUPPLIER MASTER FILES
+# ============================================================
+
+
+def write_supplier_files(
+    supplier_data: dict[str, pd.DataFrame],
+) -> None:
+
+    # Malaysia
+    my = supplier_data[
+        "MY"
+    ].copy()
+
+    my[
+        "status"
+    ] = np.random.choice(
+        [
+            "Active",
+            "Inactive",
+        ],
+        size=len(my),
+        p=[
+            0.96,
+            0.04,
+        ],
+    )
+
+    my = my.rename(
+        columns={
+            "preferred_flag":
+                "preferred_supplier_flag",
+        }
+    )
+
+    my = my[
+        [
+            "supplier_id",
+            "supplier_name",
+            "supplier_type",
+            "preferred_supplier_flag",
+            "status",
+        ]
+    ]
+
+    my.to_csv(
+        MY_DIR / "suppliers.csv",
+        index=False,
+    )
+
+    # Singapore
+    sg = supplier_data[
+        "SG"
+    ].copy()
+
+    sg[
+        "active_flag"
+    ] = np.random.choice(
+        [
+            "Active",
+            "Inactive",
+        ],
+        size=len(sg),
+        p=[
+            0.96,
+            0.04,
+        ],
+    )
+
+    sg = sg.rename(
         columns={
             "supplier_id": "vendor_code",
             "supplier_name": "vendor_name",
             "supplier_type": "vendor_category",
-            "preferred_supplier_flag": "preferred_flag",
-            "country": "vendor_country",
-            "status": "active_flag",
         }
     )
 
+    sg = sg[
+        [
+            "vendor_code",
+            "vendor_name",
+            "vendor_category",
+            "preferred_flag",
+            "active_flag",
+        ]
+    ]
 
-def convert_indonesia_supplier_schema(
-    suppliers: pd.DataFrame,
-) -> pd.DataFrame:
-    return suppliers.rename(
+    sg.to_excel(
+        SG_DIR / "vendor_master.xlsx",
+        index=False,
+    )
+
+    # Indonesia
+    idn = supplier_data[
+        "ID"
+    ].copy()
+
+    idn[
+        "provider_status"
+    ] = np.random.choice(
+        [
+            "Active",
+            "Inactive",
+        ],
+        size=len(idn),
+        p=[
+            0.96,
+            0.04,
+        ],
+    )
+
+    idn = idn.rename(
         columns={
             "supplier_id": "provider_code",
             "supplier_name": "provider_name",
             "supplier_type": "provider_type",
-            "preferred_supplier_flag": "preferred",
-            "country": "provider_country",
-            "status": "provider_status",
+            "preferred_flag": "preferred",
         }
     )
 
+    idn = idn[
+        [
+            "provider_code",
+            "provider_name",
+            "provider_type",
+            "preferred",
+            "provider_status",
+        ]
+    ]
 
-def convert_singapore_finance_schema(
-    finance: pd.DataFrame,
-) -> pd.DataFrame:
-    return finance.rename(
+    idn.to_csv(
+        ID_DIR / "supplier_export.csv",
+        index=False,
+    )
+
+
+# ============================================================
+# FINANCE FILES
+# ============================================================
+
+
+def write_finance_files(
+    finance_data: dict[str, pd.DataFrame],
+) -> None:
+
+    finance_data[
+        "MY"
+    ].to_csv(
+        MY_DIR / "finance.csv",
+        index=False,
+    )
+
+    sg = finance_data[
+        "SG"
+    ].rename(
         columns={
             "finance_month": "period",
             "country": "market",
@@ -779,11 +1420,14 @@ def convert_singapore_finance_schema(
         }
     )
 
+    sg.to_csv(
+        SG_DIR / "finance_extract.csv",
+        index=False,
+    )
 
-def convert_indonesia_finance_schema(
-    finance: pd.DataFrame,
-) -> pd.DataFrame:
-    return finance.rename(
+    idn = finance_data[
+        "ID"
+    ].rename(
         columns={
             "finance_month": "accounting_period",
             "country": "country_code",
@@ -794,204 +1438,513 @@ def convert_indonesia_finance_schema(
         }
     )
 
+    idn.to_csv(
+        ID_DIR / "finance_id.csv",
+        index=False,
+    )
 
-def make_malaysia_payments(
+
+# ============================================================
+# MALAYSIA PAYMENT DATA
+# ============================================================
+
+
+def create_my_payments(
     bookings: pd.DataFrame,
-    rng: np.random.Generator,
 ) -> pd.DataFrame:
-    confirmed = bookings.loc[
-        bookings["booking_status"] == "Confirmed"
+    working = bookings[
+        [
+            "booking_id",
+            "booking_date",
+            "booking_value",
+            "booking_status",
+        ]
     ].copy()
 
-    sample_size = min(
-        len(confirmed),
-        50000,
+    working[
+        "payment_id"
+    ] = [
+        f"MY-PAY-{number:07d}"
+        for number in range(
+            1,
+            len(working) + 1,
+        )
+    ]
+
+    working[
+        "payment_method"
+    ] = np.random.choice(
+        [
+            "Corporate Card",
+            "Bank Transfer",
+            "Virtual Card",
+            "Invoice",
+        ],
+        size=len(working),
+        p=[
+            0.30,
+            0.20,
+            0.25,
+            0.25,
+        ],
     )
 
-    selected = confirmed.sample(
-        n=sample_size,
-        random_state=42,
-    )
-
-    payment_delay = rng.integers(
-        0,
-        15,
-        size=sample_size,
-    )
-
-    payment_date = (
-        pd.to_datetime(selected["booking_date"])
+    working[
+        "payment_date"
+    ] = (
+        pd.to_datetime(
+            working[
+                "booking_date"
+            ]
+        )
         + pd.to_timedelta(
-            payment_delay,
+            np.random.randint(
+                0,
+                10,
+                size=len(working),
+            ),
             unit="D",
         )
     )
 
-    payments = pd.DataFrame(
-        {
-            "payment_id": [
-                f"MY-P{i:08d}"
-                for i in range(1, sample_size + 1)
-            ],
-            "booking_id": selected[
-                "booking_id"
-            ].to_numpy(),
-            "payment_date": payment_date.to_numpy(),
-            "payment_method": rng.choice(
-                [
-                    "Corporate Card",
-                    "Bank Transfer",
-                    "Invoice",
-                ],
-                size=sample_size,
-                p=[0.45, 0.20, 0.35],
-            ),
-            "payment_amount": selected[
+    working[
+        "paid_amount"
+    ] = np.where(
+        working[
+            "booking_status"
+        ].eq(
+            "Cancelled"
+        ),
+        0.0,
+        working[
+            "booking_value"
+        ],
+    )
+
+    working[
+        "refund_amount"
+    ] = np.where(
+        working[
+            "booking_status"
+        ].eq(
+            "Refunded"
+        ),
+        np.abs(
+            working[
                 "booking_value"
-            ].to_numpy(),
-            "payment_status": rng.choice(
-                ["Settled", "Pending", "Failed"],
-                size=sample_size,
-                p=[0.96, 0.03, 0.01],
-            ),
-        }
+            ]
+        ),
+        0.0,
     )
 
-    payments["settlement_date"] = (
-        payments["payment_date"]
-        + pd.to_timedelta(
-            rng.integers(
-                1,
-                6,
-                size=sample_size,
-            ),
-            unit="D",
-        )
-    )
-
-    return payments
+    return working[
+        [
+            "payment_id",
+            "booking_id",
+            "payment_method",
+            "payment_date",
+            "paid_amount",
+            "refund_amount",
+        ]
+    ]
 
 
-def save_country_data(
-    country_code: str,
-    bookings: pd.DataFrame,
-    customers: pd.DataFrame,
-    suppliers: pd.DataFrame,
-    finance: pd.DataFrame,
-    rng: np.random.Generator,
+# ============================================================
+# DEFECT MANIFEST
+# ============================================================
+
+
+def write_defect_manifest(
+    manifest_rows: list[dict],
 ) -> None:
-    country_folder = {
-        "MY": "malaysia",
-        "SG": "singapore",
-        "ID": "indonesia",
-    }[country_code]
-
-    output_dir = RAW_DIR / country_folder
-    output_dir.mkdir(
-        parents=True,
-        exist_ok=True,
+    manifest = pd.DataFrame(
+        manifest_rows
     )
 
-    if country_code == "MY":
-        convert_malaysia_schema(
-            bookings
-        ).to_csv(
-            output_dir / "bookings.csv",
-            index=False,
+    manifest.to_csv(
+        DOCS_DIR
+        / "synthetic_defect_manifest.csv",
+        index=False,
+    )
+
+    markdown_path = (
+        DOCS_DIR
+        / "synthetic_defect_manifest.md"
+    )
+
+    lines = [
+        "# Synthetic Defect Manifest",
+        "",
+        (
+            "Independent synthetic case study. "
+            "No Peter Stuyvesant Travel "
+            "confidential data, customer "
+            "information or internal systems "
+            "are used."
+        ),
+        "",
+        (
+            "This document records intentional "
+            "data-quality defects injected into "
+            "the fictional source datasets."
+        ),
+        "",
+        "| Country | Defect | Records Injected |",
+        "|---|---|---:|",
+    ]
+
+    for row in manifest_rows:
+        lines.append(
+            (
+                f"| {row['country']} "
+                f"| {row['defect']} "
+                f"| {row['records_injected']} |"
+            )
         )
 
-        customers.to_excel(
-            output_dir / "customers.xlsx",
-            index=False,
+    markdown_path.write_text(
+        "\n".join(lines),
+        encoding="utf-8",
+    )
+
+
+# ============================================================
+# GENERATED DATA VALIDATION
+# ============================================================
+
+
+def validate_generated_files() -> None:
+    my = pd.read_csv(
+        MY_DIR / "bookings.csv"
+    )
+
+    sg = pd.read_excel(
+        SG_DIR / "transactions.xlsx"
+    )
+
+    idn = pd.read_csv(
+        ID_DIR / "booking_export.csv"
+    )
+
+    expected_my_columns = [
+        "booking_id",
+        "booking_date",
+        "travel_date",
+        "customer_id",
+        "supplier_id",
+        "product_type",
+        "booking_channel",
+        "destination_country",
+        "currency",
+        "booking_value",
+        "revenue",
+        "cost",
+        "booking_status",
+    ]
+
+    expected_sg_columns = [
+        "transaction_ref",
+        "txn_date",
+        "departure_date",
+        "client_code",
+        "vendor_code",
+        "service_category",
+        "booking_method",
+        "destination",
+        "txn_currency",
+        "gross_sales",
+        "net_revenue",
+        "direct_cost",
+        "status",
+    ]
+
+    expected_id_columns = [
+        "booking_no",
+        "created_at",
+        "journey_date",
+        "account_no",
+        "provider_code",
+        "travel_product",
+        "channel",
+        "destination",
+        "currency_code",
+        "total_booking_amount",
+        "service_revenue",
+        "supplier_cost",
+        "booking_state",
+    ]
+
+    if my.columns.tolist() != expected_my_columns:
+        raise RuntimeError(
+            "Malaysia booking schema mismatch."
         )
 
-        suppliers.to_csv(
-            output_dir / "suppliers.csv",
-            index=False,
+    if sg.columns.tolist() != expected_sg_columns:
+        raise RuntimeError(
+            "Singapore booking schema mismatch."
         )
 
-        finance.to_csv(
-            output_dir / "finance.csv",
-            index=False,
+    if idn.columns.tolist() != expected_id_columns:
+        raise RuntimeError(
+            "Indonesia booking schema mismatch."
         )
 
-        payments = make_malaysia_payments(
-            bookings,
-            rng,
+    expected_sg_products = {
+        "Flight",
+        "Accommodation",
+        "Transport",
+        "Other Service",
+    }
+
+    expected_id_products = {
+        "AIR",
+        "HOTEL",
+        "GROUND",
+        "OTHER",
+    }
+
+    actual_sg_products = set(
+        sg[
+            "service_category"
+        ]
+        .dropna()
+        .unique()
+    )
+
+    actual_id_products = set(
+        idn[
+            "travel_product"
+        ]
+        .dropna()
+        .unique()
+    )
+
+    if not expected_sg_products.issubset(
+        actual_sg_products
+    ):
+        raise RuntimeError(
+            "Singapore normal product labels missing."
         )
 
-        payments.to_csv(
-            output_dir / "payments.csv",
-            index=False,
+    if not expected_id_products.issubset(
+        actual_id_products
+    ):
+        raise RuntimeError(
+            "Indonesia normal product labels missing."
         )
 
-    elif country_code == "SG":
-        convert_singapore_schema(
-            bookings
-        ).to_excel(
-            output_dir / "transactions.xlsx",
-            index=False,
-        )
 
-        convert_singapore_customer_schema(
-            customers
-        ).to_csv(
-            output_dir / "client_master.csv",
-            index=False,
-        )
-
-        convert_singapore_supplier_schema(
-            suppliers
-        ).to_excel(
-            output_dir / "vendor_master.xlsx",
-            index=False,
-        )
-
-        convert_singapore_finance_schema(
-            finance
-        ).to_csv(
-            output_dir / "finance_extract.csv",
-            index=False,
-        )
-
-    elif country_code == "ID":
-        convert_indonesia_schema(
-            bookings
-        ).to_csv(
-            output_dir / "booking_export.csv",
-            index=False,
-        )
-
-        convert_indonesia_customer_schema(
-            customers
-        ).to_excel(
-            output_dir / "accounts.xlsx",
-            index=False,
-        )
-
-        convert_indonesia_supplier_schema(
-            suppliers
-        ).to_csv(
-            output_dir / "supplier_export.csv",
-            index=False,
-        )
-
-        convert_indonesia_finance_schema(
-            finance
-        ).to_csv(
-            output_dir / "finance_id.csv",
-            index=False,
-        )
+# ============================================================
+# MAIN
+# ============================================================
 
 
 def main() -> None:
-    config = load_config()
+    ensure_directories()
 
-    rng = np.random.default_rng(
-        config["random_seed"]
+    start_date, end_date = (
+        load_project_dates()
     )
 
-    manifest = []
+    print(
+        "Generating independent synthetic regional travel data..."
+    )
+
+    print(
+        (
+            f"Period: "
+            f"{start_date.date()} "
+            f"to "
+            f"{end_date.date()}"
+        )
+    )
+
+    customer_data = {}
+    supplier_data = {}
+    clean_booking_data = {}
+    finance_data = {}
+    raw_booking_data = {}
+    manifest_rows = []
+
+    for (
+        country_code,
+        config,
+    ) in COUNTRY_CONFIG.items():
+
+        customers = create_customer_master(
+            country_code=country_code,
+            customer_count=config[
+                "customers"
+            ],
+        )
+
+        suppliers = create_supplier_master(
+            country_code=country_code,
+            supplier_count=config[
+                "suppliers"
+            ],
+        )
+
+        bookings = generate_clean_bookings(
+            country_code=country_code,
+            row_count=config[
+                "booking_rows"
+            ],
+            customers=customers,
+            suppliers=suppliers,
+            start_date=start_date,
+            end_date=end_date,
+        )
+
+        finance = create_finance_truth(
+            bookings=bookings,
+            country_code=country_code,
+        )
+
+        customer_data[
+            country_code
+        ] = customers
+
+        supplier_data[
+            country_code
+        ] = suppliers
+
+        clean_booking_data[
+            country_code
+        ] = bookings
+
+        finance_data[
+            country_code
+        ] = finance
+
+        defective, defects = (
+            inject_booking_defects(
+                bookings=bookings,
+                country_code=country_code,
+                valid_customers=set(
+                    customers[
+                        "customer_id"
+                    ]
+                ),
+                valid_suppliers=set(
+                    suppliers[
+                        "supplier_id"
+                    ]
+                ),
+            )
+        )
+
+        defective = (
+            apply_country_terminology(
+                defective,
+                country_code,
+            )
+        )
+
+        raw_booking_data[
+            country_code
+        ] = defective
+
+        manifest_rows.extend(
+            defects
+        )
+
+    write_customer_files(
+        customer_data
+    )
+
+    write_supplier_files(
+        supplier_data
+    )
+
+    my_raw = convert_my_booking_schema(
+        raw_booking_data[
+            "MY"
+        ]
+    )
+
+    my_raw.to_csv(
+        MY_DIR / "bookings.csv",
+        index=False,
+    )
+
+    sg_raw = convert_sg_booking_schema(
+        raw_booking_data[
+            "SG"
+        ]
+    )
+
+    sg_raw.to_excel(
+        SG_DIR / "transactions.xlsx",
+        index=False,
+    )
+
+    id_raw = convert_id_booking_schema(
+        raw_booking_data[
+            "ID"
+        ]
+    )
+
+    id_raw.to_csv(
+        ID_DIR / "booking_export.csv",
+        index=False,
+    )
+
+    write_finance_files(
+        finance_data
+    )
+
+    payments = create_my_payments(
+        clean_booking_data[
+            "MY"
+        ]
+    )
+
+    payments.to_csv(
+        MY_DIR / "payments.csv",
+        index=False,
+    )
+
+    write_defect_manifest(
+        manifest_rows
+    )
+
+    validate_generated_files()
+
+    print()
+    print(
+        "Synthetic data generation completed."
+    )
+
+    print()
+    print(
+        "Booking source row counts"
+    )
+
+    print(
+        "-------------------------"
+    )
+
+    print(
+        f"MY: {len(my_raw):,}"
+    )
+
+    print(
+        f"SG: {len(sg_raw):,}"
+    )
+
+    print(
+        f"ID: {len(id_raw):,}"
+    )
+
+    print()
+    print(
+        "Customer entities"
+    )
+
+    print(
+        "-----------------"
+    )
 
     for country_code in [
         "MY",
@@ -999,89 +1952,96 @@ def main() -> None:
         "ID",
     ]:
         print(
-            f"\nGenerating {country_code}..."
+            (
+                f"{country_code}: "
+                f"{len(customer_data[country_code]):,}"
+            )
         )
 
-        customers = make_customer_master(
-            country_code,
-            CUSTOMER_COUNTS[country_code],
-            rng,
-        )
-
-        suppliers = make_supplier_master(
-            country_code,
-            SUPPLIER_COUNTS[country_code],
-            rng,
-        )
-
-        target_rows = config[
-            "countries"
-        ][country_code][
-            "target_booking_rows"
-        ]
-
-        clean_bookings = make_booking_data(
-            country_code,
-            target_rows,
-            customers,
-            suppliers,
-            config,
-            rng,
-        )
-
-        finance = make_finance_data(
-            clean_bookings,
-            country_code,
-            rng,
-        )
-
-        raw_bookings = inject_booking_defects(
-            clean_bookings,
-            country_code,
-            rng,
-            manifest,
-        )
-
-        save_country_data(
-            country_code,
-            raw_bookings,
-            customers,
-            suppliers,
-            finance,
-            rng,
-        )
-
-        print(
-            f"{country_code}: "
-            f"{len(raw_bookings):,} raw booking rows"
-        )
-
-        print(
-            f"{country_code}: "
-            f"{len(customers):,} customers"
-        )
-
-        print(
-            f"{country_code}: "
-            f"{len(suppliers):,} suppliers"
-        )
-
-    manifest_df = pd.DataFrame(
-        manifest
-    )
-
-    manifest_df.to_csv(
-        REFERENCE_DIR / "defect_manifest.csv",
-        index=False,
+    print()
+    print(
+        "Supplier entities"
     )
 
     print(
-        "\nSynthetic raw-data generation completed."
+        "-----------------"
+    )
+
+    for country_code in [
+        "MY",
+        "SG",
+        "ID",
+    ]:
+        print(
+            (
+                f"{country_code}: "
+                f"{len(supplier_data[country_code]):,}"
+            )
+        )
+
+    print()
+    print(
+        "Normal product terminology"
     )
 
     print(
-        f"Defect manifest: "
-        f"{len(manifest_df):,} defect definitions"
+        "--------------------------"
+    )
+
+    print(
+        "MY: Air / Hotel / Ground / Other"
+    )
+
+    print(
+        (
+            "SG: Flight / Accommodation / "
+            "Transport / Other Service"
+        )
+    )
+
+    print(
+        "ID: AIR / HOTEL / GROUND / OTHER"
+    )
+
+    print()
+    print(
+        "Raw booking schemas"
+    )
+
+    print(
+        "-------------------"
+    )
+
+    print(
+        (
+            "MY: booking_id / booking_date / "
+            "travel_date / ..."
+        )
+    )
+
+    print(
+        (
+            "SG: transaction_ref / txn_date / "
+            "departure_date / ..."
+        )
+    )
+
+    print(
+        (
+            "ID: booking_no / created_at / "
+            "journey_date / ... / booking_state"
+        )
+    )
+
+    print()
+    print(
+        "Raw data written under:"
+    )
+
+    print(
+        RAW_DIR.relative_to(
+            PROJECT_ROOT
+        )
     )
 
 

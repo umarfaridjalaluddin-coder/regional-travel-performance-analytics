@@ -1,81 +1,81 @@
-supplier_id,supplier_name,supplier_type,preferred_supplier_flag,country,status
-MY-S0001,"Marks, Miller and Griffin",Hotel,Y,MY,Active
-MY-S0002,"Cox, Stark and Rodriguez",Air,Y,MY,Active
-MY-S0003,"Leach, Harris and Herrera",Hotel,N,MY,Active
-MY-S0004,Murphy PLC,Other,N,MY,Active
-MY-S0005,Wilson-Harris,Air,N,MY,Inactive
-MY-S0006,"Burns, Nolan and Griffin",Air,N,MY,Active
-MY-S0007,Chavez PLC,Air,N,MY,Active
-MY-S0008,Bryant-Brown,Ground,N,MY,Active
-MY-S0009,Chambers-Parker,Hotel,Y,MY,Active
-MY-S0010,Foster Inc,Ground,N,MY,Active
-MY-S0011,"Robinson, Jones and Henderson",Air,N,MY,Active
-MY-S0012,"Brown, Mcknight and Michael",Air,N,MY,Active
-MY-S0013,Andersen Group,Air,Y,MY,Active
-MY-S0014,Mitchell and Sons,Ground,Y,MY,Active
-MY-S0015,Cannon Ltd,Ground,Y,MY,Active
-MY-S0016,"Stuart, Brooks and Vance",Ground,N,MY,Active
-MY-S0017,Kane-Knox,Ground,Y,MY,Active
-MY-S0018,Miller-Brandt,Ground,Y,MY,Active
-MY-S0019,"Anderson, Dalton and Wilson",Hotel,N,MY,Active
-MY-S0020,"Long, Anderson and Irwin",Hotel,Y,MY,Active
-MY-S0021,Avila LLC,Ground,Y,MY,Active
-MY-S0022,Nunez-Stephens,Air,Y,MY,Active
-MY-S0023,"Gray, Hall and Murray",Hotel,N,MY,Active
-MY-S0024,Hill Ltd,Hotel,Y,MY,Active
-MY-S0025,Johnson Ltd,Ground,N,MY,Active
-MY-S0026,Mendez-Mayer,Air,Y,MY,Active
-MY-S0027,Allen Inc,Air,N,MY,Active
-MY-S0028,Wheeler Group,Hotel,N,MY,Active
-MY-S0029,"Powers, Brennan and Sanchez",Air,Y,MY,Active
-MY-S0030,Morales and Sons,Hotel,Y,MY,Active
-MY-S0031,"Robinson, Shields and Brown",Ground,N,MY,Active
-MY-S0032,"Holder, Young and Hendricks",Hotel,Y,MY,Active
-MY-S0033,"Flores, Harper and Chambers",Air,N,MY,Active
-MY-S0034,Young-Walter,Air,Y,MY,Active
-MY-S0035,"Boyd, Gutierrez and Hill",Ground,N,MY,Active
-MY-S0036,"Fry, Hobbs and Buck",Ground,N,MY,Active
-MY-S0037,"Shelton, Peters and Williams",Other,Y,MY,Active
-MY-S0038,David-Powers,Hotel,Y,MY,Active
-MY-S0039,"Flores, Butler and Hernandez",Air,Y,MY,Active
-MY-S0040,White-Medina,Hotel,Y,MY,Active
-MY-S0041,Atkinson LLC,Ground,Y,MY,Active
-MY-S0042,"Thomas, Ford and Brown",Air,Y,MY,Active
-MY-S0043,Faulkner-Grant,Hotel,Y,MY,Active
-MY-S0044,Price LLC,Other,Y,MY,Active
-MY-S0045,Rivera Inc,Air,N,MY,Active
-MY-S0046,Boone-Davis,Ground,N,MY,Active
-MY-S0047,"Calderon, Williams and Bennett",Hotel,N,MY,Active
-MY-S0048,"Morrison, Russo and Lopez",Hotel,Y,MY,Active
-MY-S0049,"Ramsey, Hansen and Mendoza",Hotel,N,MY,Active
-MY-S0050,Turner-Stout,Other,N,MY,Active
-MY-S0051,Giles Ltd,Other,Y,MY,Active
-MY-S0052,Burgess Group,Hotel,Y,MY,Active
-MY-S0053,Dominguez Ltd,Air,Y,MY,Active
-MY-S0054,Sanders and Sons,Hotel,Y,MY,Active
-MY-S0055,"Morris, Campbell and Owens",Hotel,N,MY,Active
-MY-S0056,"Howard, Green and Hunt",Other,Y,MY,Active
-MY-S0057,Owens-Lang,Hotel,N,MY,Active
-MY-S0058,"Harrison, Franco and Rocha",Hotel,N,MY,Active
-MY-S0059,Edwards-Williams,Air,Y,MY,Active
-MY-S0060,Figueroa Inc,Air,N,MY,Active
-MY-S0061,Tran-Silva,Air,N,MY,Active
-MY-S0062,"Butler, Hernandez and Rivera",Air,N,MY,Active
-MY-S0063,Hudson-Sanchez,Hotel,N,MY,Active
-MY-S0064,"Pena, Cohen and Scott",Other,Y,MY,Active
-MY-S0065,Levy-May,Hotel,Y,MY,Active
-MY-S0066,Murray-Oconnor,Hotel,N,MY,Active
-MY-S0067,Jackson-Cortez,Ground,N,MY,Active
-MY-S0068,White-Preston,Hotel,Y,MY,Active
-MY-S0069,"Bernard, Warren and Combs",Air,N,MY,Active
-MY-S0070,Landry Ltd,Hotel,Y,MY,Active
-MY-S0071,Duran Group,Ground,N,MY,Active
-MY-S0072,Kirby and Sons,Other,N,MY,Active
-MY-S0073,Mann Inc,Air,N,MY,Active
-MY-S0074,Wagner LLC,Hotel,Y,MY,Active
-MY-S0075,Williamson Ltd,Hotel,N,MY,Inactive
-MY-S0076,"Durham, Hopkins and Smith",Hotel,Y,MY,Active
-MY-S0077,"Arnold, Smith and Moreno",Hotel,Y,MY,Active
-MY-S0078,Nichols-Mitchell,Ground,Y,MY,Active
-MY-S0079,"Li, Craig and Drake",Ground,Y,MY,Active
-MY-S0080,Rodriguez Inc,Hotel,N,MY,Active
+supplier_id,supplier_name,supplier_type,preferred_supplier_flag,status
+MY-SUP-001,Synthetic Supplier MY 001,Hotel,Y,Active
+MY-SUP-002,Synthetic Supplier MY 002,Travel Service,Y,Active
+MY-SUP-003,Synthetic Supplier MY 003,Travel Service,Y,Active
+MY-SUP-004,Synthetic Supplier MY 004,Ground Transport,Y,Active
+MY-SUP-005,Synthetic Supplier MY 005,Airline,N,Active
+MY-SUP-006,Synthetic Supplier MY 006,Ground Transport,Y,Active
+MY-SUP-007,Synthetic Supplier MY 007,Airline,N,Active
+MY-SUP-008,Synthetic Supplier MY 008,Ground Transport,Y,Active
+MY-SUP-009,Synthetic Supplier MY 009,Airline,N,Inactive
+MY-SUP-010,Synthetic Supplier MY 010,Ground Transport,Y,Active
+MY-SUP-011,Synthetic Supplier MY 011,Hotel,N,Active
+MY-SUP-012,Synthetic Supplier MY 012,Ground Transport,N,Active
+MY-SUP-013,Synthetic Supplier MY 013,Hotel,Y,Active
+MY-SUP-014,Synthetic Supplier MY 014,Ground Transport,N,Active
+MY-SUP-015,Synthetic Supplier MY 015,Airline,Y,Active
+MY-SUP-016,Synthetic Supplier MY 016,Ground Transport,Y,Active
+MY-SUP-017,Synthetic Supplier MY 017,Airline,Y,Active
+MY-SUP-018,Synthetic Supplier MY 018,Airline,N,Active
+MY-SUP-019,Synthetic Supplier MY 019,Ground Transport,N,Active
+MY-SUP-020,Synthetic Supplier MY 020,Hotel,Y,Active
+MY-SUP-021,Synthetic Supplier MY 021,Hotel,N,Active
+MY-SUP-022,Synthetic Supplier MY 022,Ground Transport,N,Active
+MY-SUP-023,Synthetic Supplier MY 023,Hotel,N,Active
+MY-SUP-024,Synthetic Supplier MY 024,Ground Transport,Y,Active
+MY-SUP-025,Synthetic Supplier MY 025,Airline,Y,Active
+MY-SUP-026,Synthetic Supplier MY 026,Travel Service,Y,Active
+MY-SUP-027,Synthetic Supplier MY 027,Travel Service,Y,Active
+MY-SUP-028,Synthetic Supplier MY 028,Ground Transport,Y,Active
+MY-SUP-029,Synthetic Supplier MY 029,Airline,N,Active
+MY-SUP-030,Synthetic Supplier MY 030,Ground Transport,Y,Active
+MY-SUP-031,Synthetic Supplier MY 031,Travel Service,Y,Active
+MY-SUP-032,Synthetic Supplier MY 032,Ground Transport,Y,Active
+MY-SUP-033,Synthetic Supplier MY 033,Travel Service,Y,Active
+MY-SUP-034,Synthetic Supplier MY 034,Hotel,Y,Active
+MY-SUP-035,Synthetic Supplier MY 035,Hotel,Y,Active
+MY-SUP-036,Synthetic Supplier MY 036,Ground Transport,Y,Inactive
+MY-SUP-037,Synthetic Supplier MY 037,Ground Transport,Y,Active
+MY-SUP-038,Synthetic Supplier MY 038,Airline,Y,Active
+MY-SUP-039,Synthetic Supplier MY 039,Hotel,Y,Active
+MY-SUP-040,Synthetic Supplier MY 040,Ground Transport,N,Active
+MY-SUP-041,Synthetic Supplier MY 041,Ground Transport,N,Active
+MY-SUP-042,Synthetic Supplier MY 042,Travel Service,N,Active
+MY-SUP-043,Synthetic Supplier MY 043,Airline,N,Active
+MY-SUP-044,Synthetic Supplier MY 044,Travel Service,Y,Active
+MY-SUP-045,Synthetic Supplier MY 045,Airline,Y,Active
+MY-SUP-046,Synthetic Supplier MY 046,Hotel,Y,Active
+MY-SUP-047,Synthetic Supplier MY 047,Ground Transport,N,Active
+MY-SUP-048,Synthetic Supplier MY 048,Travel Service,N,Active
+MY-SUP-049,Synthetic Supplier MY 049,Ground Transport,Y,Active
+MY-SUP-050,Synthetic Supplier MY 050,Hotel,Y,Active
+MY-SUP-051,Synthetic Supplier MY 051,Hotel,N,Active
+MY-SUP-052,Synthetic Supplier MY 052,Hotel,N,Active
+MY-SUP-053,Synthetic Supplier MY 053,Airline,N,Active
+MY-SUP-054,Synthetic Supplier MY 054,Ground Transport,Y,Active
+MY-SUP-055,Synthetic Supplier MY 055,Ground Transport,Y,Active
+MY-SUP-056,Synthetic Supplier MY 056,Airline,N,Active
+MY-SUP-057,Synthetic Supplier MY 057,Hotel,N,Active
+MY-SUP-058,Synthetic Supplier MY 058,Airline,Y,Active
+MY-SUP-059,Synthetic Supplier MY 059,Ground Transport,Y,Active
+MY-SUP-060,Synthetic Supplier MY 060,Airline,N,Active
+MY-SUP-061,Synthetic Supplier MY 061,Hotel,Y,Active
+MY-SUP-062,Synthetic Supplier MY 062,Hotel,Y,Active
+MY-SUP-063,Synthetic Supplier MY 063,Ground Transport,Y,Active
+MY-SUP-064,Synthetic Supplier MY 064,Ground Transport,Y,Active
+MY-SUP-065,Synthetic Supplier MY 065,Ground Transport,Y,Active
+MY-SUP-066,Synthetic Supplier MY 066,Travel Service,Y,Active
+MY-SUP-067,Synthetic Supplier MY 067,Travel Service,Y,Active
+MY-SUP-068,Synthetic Supplier MY 068,Travel Service,Y,Active
+MY-SUP-069,Synthetic Supplier MY 069,Airline,Y,Active
+MY-SUP-070,Synthetic Supplier MY 070,Hotel,Y,Active
+MY-SUP-071,Synthetic Supplier MY 071,Hotel,Y,Active
+MY-SUP-072,Synthetic Supplier MY 072,Ground Transport,N,Active
+MY-SUP-073,Synthetic Supplier MY 073,Airline,Y,Active
+MY-SUP-074,Synthetic Supplier MY 074,Hotel,N,Active
+MY-SUP-075,Synthetic Supplier MY 075,Ground Transport,N,Active
+MY-SUP-076,Synthetic Supplier MY 076,Airline,Y,Active
+MY-SUP-077,Synthetic Supplier MY 077,Travel Service,Y,Active
+MY-SUP-078,Synthetic Supplier MY 078,Ground Transport,Y,Active
+MY-SUP-079,Synthetic Supplier MY 079,Travel Service,N,Active
+MY-SUP-080,Synthetic Supplier MY 080,Travel Service,Y,Active

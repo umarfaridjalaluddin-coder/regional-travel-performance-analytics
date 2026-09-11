@@ -1,221 +1,221 @@
-client_code,client_name,customer_tier,sector,relationship_manager,effective_from,effective_to,active_flag
-SG-C0001,"Hernandez, Lee and Fox",Mid-Market,Retail,Debra Sanders,2025-11-06,2029-05-13,Active
-SG-C0002,Chung-Stevens,Enterprise,Energy,Michael Evans,2020-02-11,2028-08-03,Active
-SG-C0003,Valdez Ltd,Mid-Market,Financial Services,Anna Gray,2021-05-07,2027-12-07,Inactive
-SG-C0004,"Alvarez, Walsh and Warner",Enterprise,Retail,Ryan Newman,2021-06-28,2027-05-01,Active
-SG-C0005,Knight-Hodge,SME,Logistics,Joseph Williams,2023-01-28,2028-02-11,Active
-SG-C0006,Valenzuela Ltd,Enterprise,Healthcare,Karen Williams,2023-06-26,2029-12-04,Active
-SG-C0007,Cohen LLC,Enterprise,Retail,Kristy Johnson,2025-12-23,2029-06-20,Inactive
-SG-C0008,Smith-Clark,Mid-Market,Financial Services,Robert Nicholson,2023-03-02,2027-06-06,Active
-SG-C0009,Evans PLC,Mid-Market,Professional Services,Ruben Price,2024-05-10,2029-10-04,Active
-SG-C0010,"Rivera, Campos and Taylor",SME,Government,Misty Mason DVM,2024-02-09,2029-04-14,Active
-SG-C0011,Davis and Sons,Mid-Market,Healthcare,Gina Mack,2025-08-05,2029-06-28,Active
-SG-C0012,"Sanders, Ayala and Johnson",Enterprise,Education,Willie Henry,2023-07-30,2028-12-13,Active
-SG-C0013,Tran-Bennett,Enterprise,Manufacturing,Kevin James,2022-06-19,2028-05-03,Active
-SG-C0014,"Phillips, Wright and Jones",Enterprise,Logistics,James Bowers,2021-06-17,2029-04-02,Active
-SG-C0015,Singh LLC,Enterprise,Government,Brandon Hahn,2024-08-01,2026-11-26,Active
-SG-C0016,Ward-Nelson,Mid-Market,Government,Cody Cole,2025-08-18,2027-06-03,Active
-SG-C0017,"Hunt, Garcia and Davis",Mid-Market,Financial Services,Linda Mueller,2020-09-06,2028-05-29,Active
-SG-C0018,Smith-Gutierrez,Mid-Market,Financial Services,Misty Hansen,2022-07-31,2029-12-27,Active
-SG-C0019,Armstrong and Sons,Enterprise,Education,Caroline Adams,2023-06-07,2029-09-28,Active
-SG-C0020,Snyder-Brown,Mid-Market,Healthcare,Jason Washington,2021-07-26,2029-12-25,Active
-SG-C0021,Ward and Sons,Mid-Market,Education,Kathleen Jensen,2023-01-01,2029-10-21,Active
-SG-C0022,Rodriguez-Torres,Mid-Market,Technology,Evelyn Oliver,2020-02-05,2027-06-24,Active
-SG-C0023,Alexander-Jordan,Government,Professional Services,Marilyn Wheeler,2025-01-12,2029-11-10,Active
-SG-C0024,Flores-Valentine,Enterprise,Retail,Ernest Oconnell,2025-01-21,2028-07-09,Active
-SG-C0025,Carter-Neal,Mid-Market,Healthcare,Kenneth Sanchez MD,2024-05-02,2029-06-09,Active
-SG-C0026,Diaz-Frederick,SME,Government,Zachary White,2025-07-10,2028-05-16,Active
-SG-C0027,"Johnson, Acosta and Hahn",SME,Retail,Robert Guerra,2023-01-09,2029-08-29,Active
-SG-C0028,Fuentes Group,Mid-Market,Education,Brenda Turner,2024-10-02,2029-10-07,Active
-SG-C0029,Hopkins-Espinoza,Enterprise,Professional Services,Angela Ewing,2023-05-11,2029-11-11,Inactive
-SG-C0030,Aguilar-Ferguson,Mid-Market,Professional Services,Sheila Barnes,2020-08-20,2028-04-05,Active
-SG-C0031,Gibbs LLC,Mid-Market,Education,Robin Wheeler,2025-05-26,2029-03-16,Active
-SG-C0032,Rodriguez and Sons,Enterprise,Financial Services,Heather Holland,2025-01-20,2027-07-22,Active
-SG-C0033,Hart Ltd,SME,Financial Services,Jennifer Goodwin,2021-03-07,2029-11-12,Inactive
-SG-C0034,Rodriguez-Garcia,Mid-Market,Retail,Paul Grant,2020-01-12,2026-09-29,Active
-SG-C0035,"Johnston, Griffin and Myers",Mid-Market,Healthcare,Leah Mason,2025-01-31,2028-09-05,Active
-SG-C0036,Cuevas-Webb,Government,Manufacturing,Thomas Miller,2023-11-23,2027-06-20,Active
-SG-C0037,"Thomas, Collins and Gibson",Enterprise,Logistics,John Alvarez,2021-06-12,2028-03-23,Active
-SG-C0038,Bowen-Chavez,Mid-Market,Professional Services,Andrew Page,2020-09-01,2027-03-06,Active
-SG-C0039,Sweeney Ltd,Government,Manufacturing,Robert Spears,2024-10-09,2027-07-22,Active
-SG-C0040,"Sanchez, Thompson and Moore",Government,Manufacturing,Tina Hall,2023-01-19,2029-12-14,Active
-SG-C0041,Soto-Lopez,Mid-Market,Professional Services,Jennifer Mclaughlin,2024-12-19,2028-12-31,Active
-SG-C0042,Cole Group,SME,Education,Michael Harris,2023-01-15,2029-03-05,Inactive
-SG-C0043,"Stokes, Brown and Garcia",Mid-Market,Retail,Chelsea Nguyen,2020-05-28,2028-05-18,Active
-SG-C0044,Wilson-Lambert,Government,Financial Services,Vincent Edwards MD,2022-08-17,2029-01-17,Active
-SG-C0045,Matthews-Bailey,SME,Technology,Lisa Cervantes,2020-02-02,2029-09-25,Active
-SG-C0046,"Mcbride, Sellers and Lawrence",Mid-Market,Logistics,Emily Allen,2024-03-08,2029-08-16,Inactive
-SG-C0047,White Ltd,Mid-Market,Logistics,James Carlson,2022-07-08,2027-01-02,Active
-SG-C0048,"Reyes, Lopez and Reid",SME,Education,Maria Cooke,2025-07-07,2026-09-18,Active
-SG-C0049,"Jackson, Roberts and Lopez",SME,Logistics,Lisa Glenn,2021-08-20,2028-05-19,Inactive
-SG-C0050,Washington and Sons,SME,Professional Services,Tracey Wagner,2021-04-01,2028-09-28,Active
-SG-C0051,Ortiz-Vasquez,Mid-Market,Energy,Jill Jackson,2024-06-25,2027-02-02,Active
-SG-C0052,"Johnson, Juarez and Carter",SME,Technology,Joshua Jackson,2025-12-11,2027-05-14,Active
-SG-C0053,Cunningham-Barton,SME,Professional Services,Jorge Armstrong III,2022-01-15,2028-05-04,Active
-SG-C0054,"Morrow, Richardson and Carson",Enterprise,Education,Nathan Payne,2022-03-06,2027-10-06,Active
-SG-C0055,Garcia-Greer,Mid-Market,Healthcare,Elizabeth Kidd,2025-09-05,2027-09-07,Active
-SG-C0056,Baker-Atkins,SME,Manufacturing,Sean Wilson,2023-05-29,2028-03-13,Active
-SG-C0057,Clark Ltd,SME,Financial Services,Heather Page,2025-01-17,2029-02-15,Active
-SG-C0058,"Patterson, Jensen and Glover",SME,Professional Services,Renee Hudson,2021-02-03,2029-03-13,Active
-SG-C0059,"Campbell, Ryan and Morris",Government,Professional Services,Donna Adams,2025-08-10,2027-12-27,Active
-SG-C0060,"Duke, Shelton and Davis",Mid-Market,Logistics,Rachel Sellers,2020-07-02,2027-04-19,Active
-SG-C0061,Camacho-Martinez,SME,Financial Services,Danielle Dawson,2023-06-07,2027-02-25,Active
-SG-C0062,Juarez Ltd,Government,Healthcare,Charles Chen,2023-12-06,2027-10-08,Active
-SG-C0063,"Perry, Hayes and Schultz",Mid-Market,Logistics,Anna Robertson,2023-05-23,2029-01-22,Active
-SG-C0064,Neal-Wiley,Enterprise,Technology,John Perkins,2022-07-31,2028-01-15,Active
-SG-C0065,"Davis, Stanton and Reid",SME,Energy,Sarah Flynn,2024-02-12,2027-05-06,Active
-SG-C0066,Robinson-Jordan,SME,Government,Derrick Clayton,2021-10-10,2028-04-09,Inactive
-SG-C0067,Kelley-Anderson,SME,Logistics,Rachel Shannon,2022-07-06,2028-01-13,Active
-SG-C0068,Williams Ltd,Mid-Market,Energy,Julia Martinez,2023-05-06,2027-01-18,Active
-SG-C0069,Alexander Inc,SME,Healthcare,Jessica Forbes DVM,2023-10-02,2027-05-24,Active
-SG-C0070,"Turner, Baxter and Mcdowell",SME,Energy,Isaac Miller,2024-05-26,2029-11-28,Active
-SG-C0071,"Mckee, Martin and Sanders",Enterprise,Financial Services,Michael Young,2021-01-15,2029-12-14,Inactive
-SG-C0072,"Davis, Davis and Lewis",Government,Energy,Kevin Stone,2021-05-16,2027-04-06,Active
-SG-C0073,Smith-Dominguez,Mid-Market,Energy,Virginia Henderson,2023-06-06,2029-05-08,Active
-SG-C0074,Woods and Sons,Mid-Market,Retail,Nicholas Garcia,2022-06-05,2028-12-16,Active
-SG-C0075,Richardson-Evans,SME,Retail,Robert Baxter,2021-10-23,2029-07-08,Active
-SG-C0076,"Haney, Thomas and Moreno",Enterprise,Logistics,Matthew Alexander,2024-04-18,2029-06-05,Inactive
-SG-C0077,"Lewis, Goodman and Gillespie",Enterprise,Manufacturing,Jessica Robinson,2024-11-10,2027-06-06,Active
-SG-C0078,Taylor Inc,Mid-Market,Manufacturing,Janet Richmond,2022-07-31,2026-12-29,Active
-SG-C0079,Moody-Wright,Enterprise,Healthcare,Danielle Burke,2023-05-07,2027-08-24,Active
-SG-C0080,"Lawson, Maxwell and Vaughn",Mid-Market,Financial Services,Mary Turner,2021-11-06,2028-10-30,Inactive
-SG-C0081,"Lawson, Lopez and Myers",SME,Healthcare,Rachel Leon,2020-11-04,2029-01-07,Active
-SG-C0082,Simpson Inc,Enterprise,Government,Mark Jones,2020-05-01,2029-05-08,Active
-SG-C0083,Hatfield LLC,SME,Healthcare,Scott Carroll,2021-08-22,2028-08-06,Active
-SG-C0084,Payne-Thompson,Mid-Market,Manufacturing,William Jones,2020-08-10,2027-07-29,Active
-SG-C0085,"Jones, Baker and Williams",Enterprise,Financial Services,Richard Hunter,2024-08-24,2029-09-13,Active
-SG-C0086,"Marquez, Wang and Henderson",SME,Energy,Martin Medina,2025-09-25,2028-02-22,Active
-SG-C0087,Ramirez LLC,Enterprise,Energy,Thomas Mccann,2023-10-08,2028-01-23,Active
-SG-C0088,Herrera Group,Enterprise,Logistics,Pamela Santos,2024-11-21,2027-09-26,Active
-SG-C0089,"Jones, Hale and Blair",Mid-Market,Education,Amy Miller,2020-10-05,2028-05-20,Active
-SG-C0090,Wilson-Salazar,Government,Manufacturing,Maxwell Barrett,2023-10-06,2027-06-20,Active
-SG-C0091,Wilson Ltd,SME,Financial Services,Adam Crawford,2022-01-15,2027-12-13,Active
-SG-C0092,Mills-Logan,Government,Retail,Carol Martinez,2020-01-24,2028-01-02,Active
-SG-C0093,Quinn-Wilson,Mid-Market,Professional Services,Frances Patterson,2023-02-19,2027-05-25,Active
-SG-C0094,"Brown, Joseph and Ray",Enterprise,Retail,Jesse Ward,2023-12-03,2028-05-23,Active
-SG-C0095,Villarreal-Jackson,Enterprise,Logistics,Raymond Shannon,2024-05-12,2029-11-17,Active
-SG-C0096,"Sharp, Perez and Hicks",SME,Financial Services,Scott Sanchez,2021-03-07,2027-11-18,Active
-SG-C0097,Cox-Mora,Mid-Market,Professional Services,Tyler Johnson,2025-03-10,2028-05-15,Active
-SG-C0098,"Yang, Barnes and Morris",Government,Government,Nathan Nelson,2021-07-29,2028-02-05,Active
-SG-C0099,Duncan Inc,Mid-Market,Manufacturing,Stephanie White,2022-01-09,2027-01-01,Active
-SG-C0100,"Jarvis, Finley and Jones",SME,Technology,Douglas Kirk,2023-07-10,2029-02-12,Active
-SG-C0101,Miller-Bryant,SME,Government,Eddie Mueller,2022-09-21,2029-08-11,Active
-SG-C0102,"Dean, Marshall and Vargas",Government,Logistics,Raymond Gonzalez DVM,2024-01-18,2027-06-17,Active
-SG-C0103,Hernandez Group,SME,Retail,Joshua Fields,2023-06-18,2029-07-27,Active
-SG-C0104,"Wiley, Tapia and Smith",SME,Professional Services,Sarah Acosta,2023-08-02,2027-04-27,Active
-SG-C0105,Harris and Sons,SME,Energy,Tyrone Kaufman,2021-08-11,2028-11-10,Active
-SG-C0106,Dawson Inc,SME,Logistics,David Bruce,2022-09-08,2028-01-02,Inactive
-SG-C0107,Haynes-Watson,SME,Logistics,Angela Davis,2023-05-09,2026-09-14,Active
-SG-C0108,Walsh Group,Enterprise,Healthcare,Keith Graham,2025-03-20,2029-07-28,Active
-SG-C0109,Young LLC,Mid-Market,Manufacturing,Tammy Long,2020-10-06,2026-09-30,Active
-SG-C0110,"Nguyen, Chavez and Hall",SME,Manufacturing,Brandy Carrillo,2022-04-17,2027-12-22,Active
-SG-C0111,Moore and Sons,Enterprise,Energy,Erik Martinez,2025-07-16,2027-07-15,Active
-SG-C0112,Oconnell-Clark,SME,Financial Services,Derek Wilson,2022-02-05,2028-04-01,Active
-SG-C0113,Aguirre LLC,SME,Education,Melissa Williams,2025-08-04,2028-06-16,Active
-SG-C0114,Hernandez-Dawson,SME,Financial Services,Jennifer Williams,2023-10-21,2026-12-16,Active
-SG-C0115,Green-Ewing,Government,Government,Jared Chavez,2020-08-19,2026-10-08,Inactive
-SG-C0116,"Pierce, Davis and Garcia",Enterprise,Financial Services,Barbara Brown,2025-02-22,2027-01-08,Active
-SG-C0117,Anderson Group,SME,Retail,Mark Newman,2024-07-28,2026-10-25,Active
-SG-C0118,"Willis, Lowery and Jones",Government,Education,Christina Brewer PhD,2021-04-16,2029-08-15,Active
-SG-C0119,Stein LLC,SME,Government,Tom Williams,2020-02-07,2026-12-06,Active
-SG-C0120,"Hamilton, Ramsey and Crawford",Enterprise,Retail,Jeffery Gomez,2024-10-28,2026-11-28,Active
-SG-C0121,Hill Group,Government,Logistics,Amanda Harvey,2022-03-17,2028-03-20,Inactive
-SG-C0122,Holland Group,Mid-Market,Government,Juan Brown,2023-04-22,2028-03-25,Active
-SG-C0123,Reyes-Barnes,Mid-Market,Education,Rebecca Wright,2022-08-22,2027-09-09,Active
-SG-C0124,"Norton, Mayo and Casey",Government,Government,Joshua Washington,2023-10-22,2029-02-13,Active
-SG-C0125,"Shaw, Price and White",SME,Technology,Daniel Huang,2023-08-26,2029-10-26,Active
-SG-C0126,Brown-Frey,SME,Healthcare,Pamela Key,2025-05-20,2026-11-08,Active
-SG-C0127,Garcia Ltd,SME,Education,Joseph Moody,2021-09-15,2026-11-24,Active
-SG-C0128,"Brown, Davies and Robinson",SME,Logistics,Rebecca Kelly,2021-08-24,2029-11-14,Active
-SG-C0129,Thompson PLC,Mid-Market,Logistics,Oscar Howard,2022-05-11,2029-05-21,Active
-SG-C0130,"Johnson, Haynes and Meza",Enterprise,Financial Services,Kristine Lopez,2020-10-12,2027-11-12,Active
-SG-C0131,Weaver-Thompson,Government,Manufacturing,Anthony Guzman,2021-09-23,2029-05-27,Inactive
-SG-C0132,Fox Inc,Government,Manufacturing,Lucas Drake,2024-04-01,2027-08-05,Active
-SG-C0133,Love-Sellers,Mid-Market,Professional Services,Erica Johnson,2024-05-13,2029-04-18,Active
-SG-C0134,"Bush, Thomas and Rodriguez",Government,Retail,Holly Jones,2025-08-07,2028-07-04,Active
-SG-C0135,"Mcmahon, Foster and Garcia",Enterprise,Logistics,Chad Moore,2021-05-05,2029-04-25,Active
-SG-C0136,Conner-Yu,SME,Energy,Carrie Novak,2022-01-01,2027-05-15,Active
-SG-C0137,"Preston, Austin and Kelly",SME,Retail,Robin Gray,2025-06-11,2028-05-05,Active
-SG-C0138,"Barker, Anderson and Daniel",Enterprise,Healthcare,Tiffany Myers,2022-02-02,2029-09-10,Active
-SG-C0139,"Johnson, Guzman and Mccall",Enterprise,Professional Services,Connie Cunningham,2025-02-22,2028-01-28,Active
-SG-C0140,Taylor-Mcgee,SME,Financial Services,William Jackson,2021-11-24,2027-12-09,Active
-SG-C0141,Underwood Ltd,Mid-Market,Government,Stacie Griffin,2021-10-04,2026-09-15,Active
-SG-C0142,Clark-Steele,Government,Energy,Richard Le,2025-06-21,2029-12-02,Active
-SG-C0143,Cruz Ltd,Government,Manufacturing,Christopher Gutierrez,2024-01-25,2027-01-18,Inactive
-SG-C0144,Bell-Bennett,Enterprise,Technology,Rachel Lane,2022-02-05,2028-07-21,Inactive
-SG-C0145,"Perez, Hayes and Lloyd",Mid-Market,Healthcare,Alejandro Green,2021-04-30,2027-01-27,Active
-SG-C0146,Jones and Sons,Mid-Market,Logistics,Candace Jones,2024-10-01,2028-04-30,Active
-SG-C0147,Morgan PLC,Enterprise,Financial Services,Michele Reynolds,2023-11-16,2029-03-14,Active
-SG-C0148,"Martin, Preston and Moore",SME,Education,Daniel Lee,2020-07-03,2028-04-16,Active
-SG-C0149,"Spencer, Frost and Fernandez",Enterprise,Logistics,Elizabeth Davis,2020-04-25,2027-08-16,Active
-SG-C0150,Armstrong-Larsen,Mid-Market,Healthcare,Isaac Patterson,2025-01-29,2029-12-16,Inactive
-SG-C0151,Colon-Weber,Enterprise,Financial Services,Mr. Daniel Little,2020-04-10,2028-11-19,Active
-SG-C0152,Wells Inc,Enterprise,Education,James Burns,2020-09-07,2027-01-27,Active
-SG-C0153,"Baker, May and Hughes",SME,Professional Services,James Lopez,2021-08-31,2029-11-30,Active
-SG-C0154,Baker Group,SME,Manufacturing,Russell Elliott,2021-06-21,2029-05-03,Active
-SG-C0155,Goodwin Ltd,SME,Financial Services,Michael Morton,2022-09-22,2027-03-27,Active
-SG-C0156,Arellano-Lawrence,SME,Government,Sara Cardenas,2021-04-29,2027-09-04,Active
-SG-C0157,Sheppard-Mcdaniel,Mid-Market,Healthcare,Laura Young,2020-06-01,2026-09-11,Active
-SG-C0158,Miller-Orr,Mid-Market,Energy,Kathryn Lester,2020-08-25,2029-01-10,Active
-SG-C0159,"Byrd, Oliver and Martinez",Mid-Market,Professional Services,Carrie Joyce,2025-10-28,2028-07-21,Active
-SG-C0160,Stokes and Sons,Enterprise,Manufacturing,Blake Vega,2022-07-27,2026-12-09,Active
-SG-C0161,Osborn Ltd,Government,Professional Services,Kurt Flores,2020-03-26,2027-05-04,Active
-SG-C0162,"Sloan, Jones and Hughes",Mid-Market,Healthcare,Gabriel Hill,2023-01-14,2028-10-11,Active
-SG-C0163,Stark-Smith,SME,Energy,Laurie Harrington,2020-08-31,2028-03-07,Active
-SG-C0164,Perry and Sons,Mid-Market,Government,Lauren Hanna,2021-04-09,2029-01-11,Active
-SG-C0165,Buckley PLC,SME,Technology,Rachel Dillon,2020-05-09,2029-06-18,Active
-SG-C0166,Humphrey-Baker,Government,Logistics,Laura Kennedy,2022-12-30,2029-12-09,Active
-SG-C0167,Hill and Sons,SME,Energy,Melanie Morales,2022-03-21,2029-09-29,Active
-SG-C0168,Preston-Rivera,Enterprise,Healthcare,Patrick Mccall,2021-12-17,2029-12-02,Active
-SG-C0169,Smith-Roth,Mid-Market,Professional Services,Douglas Vasquez,2023-05-24,2026-09-08,Active
-SG-C0170,"Cohen, Compton and Perez",Government,Professional Services,Patrick Schroeder,2021-02-27,2027-03-01,Active
-SG-C0171,Adams-Butler,Government,Financial Services,Chelsea Lewis,2021-11-16,2028-06-23,Active
-SG-C0172,Figueroa-Malone,SME,Energy,Samantha Robertson,2020-03-07,2029-01-11,Active
-SG-C0173,Jones Ltd,Enterprise,Government,Brandy York,2022-08-08,2029-09-06,Active
-SG-C0174,"Johnson, Lee and Whitaker",Enterprise,Manufacturing,Danielle Bryant,2025-03-06,2026-10-08,Active
-SG-C0175,Bush-Hill,SME,Government,Kathy Reid,2024-04-06,2027-11-11,Active
-SG-C0176,Maldonado and Sons,Government,Government,Kirk Thompson,2022-07-19,2028-04-19,Active
-SG-C0177,Matthews-Bailey,Mid-Market,Government,Steven Curry,2021-03-29,2028-07-04,Inactive
-SG-C0178,"Davis, Johnson and Williams",Enterprise,Financial Services,Penny Lewis,2021-09-10,2029-02-09,Active
-SG-C0179,Holland Ltd,Enterprise,Manufacturing,Matthew Palmer,2025-03-01,2028-03-13,Inactive
-SG-C0180,"Smith, Buck and Holland",Mid-Market,Government,Alejandra King,2020-03-24,2028-03-09,Active
-SG-C0181,Marquez-Fletcher,Government,Manufacturing,Steven York,2024-03-20,2029-08-14,Active
-SG-C0182,King-Owens,SME,Technology,Samantha Sanders,2020-02-24,2027-01-27,Active
-SG-C0183,Smith Ltd,Enterprise,Technology,Sara Hoffman,2021-12-06,2029-04-09,Active
-SG-C0184,"Lynch, Evans and Rodriguez",Enterprise,Technology,William Davidson,2022-07-21,2028-03-08,Active
-SG-C0185,Green-Dawson,Enterprise,Professional Services,Elizabeth Hernandez,2024-03-30,2029-01-28,Active
-SG-C0186,Yoder PLC,Government,Energy,Francisco Taylor,2025-12-12,2027-01-16,Active
-SG-C0187,Rios LLC,Enterprise,Logistics,Jason Price,2024-09-26,2027-09-04,Active
-SG-C0188,Aguilar PLC,Government,Healthcare,Grace Reeves,2021-09-11,2026-09-25,Active
-SG-C0189,"Nichols, Glover and Knox",Government,Professional Services,Katie Bruce,2023-05-21,2027-10-31,Active
-SG-C0190,"Walter, White and Davis",Enterprise,Energy,David Stokes,2022-11-14,2029-02-20,Active
-SG-C0191,Arroyo LLC,Mid-Market,Retail,Courtney Walker,2021-02-09,2028-01-21,Active
-SG-C0192,Fisher-Eaton,Mid-Market,Logistics,Kevin Ford,2024-06-14,2028-10-22,Active
-SG-C0193,Ruiz Ltd,Government,Professional Services,Terry Jones,2024-03-19,2028-04-02,Active
-SG-C0194,Mason Ltd,SME,Financial Services,Edwin Brown,2025-11-25,2028-01-25,Active
-SG-C0195,Taylor and Sons,Mid-Market,Education,William Orozco,2023-06-21,2029-05-28,Inactive
-SG-C0196,Thomas-Huffman,Mid-Market,Logistics,Bobby Cook,2025-07-31,2028-02-01,Active
-SG-C0197,Edwards Inc,Mid-Market,Logistics,Donald Juarez,2020-12-01,2027-01-11,Active
-SG-C0198,Johnston and Sons,SME,Professional Services,Phillip Miller DDS,2020-09-12,2029-02-20,Active
-SG-C0199,"Jordan, Patterson and Woods",Enterprise,Technology,Joseph Cross,2021-12-14,2029-03-28,Active
-SG-C0200,Mcclain PLC,SME,Government,Michael Sims,2023-02-09,2027-12-11,Active
-SG-C0201,Perez LLC,Mid-Market,Technology,Brian Gordon,2025-08-07,2028-08-01,Active
-SG-C0202,Jackson-Colon,SME,Education,Earl Luna,2025-04-06,2029-12-15,Active
-SG-C0203,"Warren, Hamilton and Mcdaniel",Mid-Market,Professional Services,Zachary Henry,2022-08-08,2027-10-01,Active
-SG-C0204,Martin Group,Government,Financial Services,Danny Mercer,2024-12-11,2027-10-15,Active
-SG-C0205,Gross PLC,SME,Technology,Barbara Dawson,2023-05-24,2029-12-31,Inactive
-SG-C0206,Brooks Ltd,Government,Energy,Joseph Williams,2020-09-17,2029-11-20,Active
-SG-C0207,Stanley Ltd,SME,Government,Amber Wilson,2024-10-16,2029-06-13,Active
-SG-C0208,James-Kelley,Enterprise,Energy,Christian Neal,2024-04-11,2027-09-08,Active
-SG-C0209,"Smith, Fisher and Garcia",Mid-Market,Logistics,Lisa Haynes,2020-02-12,2029-05-01,Active
-SG-C0210,Rivas-Garcia,Government,Healthcare,Autumn Wilson,2024-12-17,2026-09-30,Active
-SG-C0211,Jimenez PLC,Mid-Market,Education,Dennis Mills,2025-09-05,2026-09-10,Inactive
-SG-C0212,Howard Group,Enterprise,Professional Services,Andrew Crawford,2024-06-29,2029-07-24,Active
-SG-C0213,Watts Group,SME,Healthcare,Aaron Powers,2023-03-13,2027-09-03,Active
-SG-C0214,Conley Ltd,Enterprise,Government,Travis Chan Jr.,2020-02-28,2027-11-02,Active
-SG-C0215,"Garcia, Scott and Hall",Mid-Market,Financial Services,Elizabeth Marshall MD,2025-12-29,2026-11-03,Active
-SG-C0216,Sawyer LLC,Enterprise,Retail,Michael Simmons,2023-04-23,2027-05-14,Active
-SG-C0217,Davis Inc,SME,Healthcare,Charles Holland,2022-07-02,2027-05-20,Active
-SG-C0218,Howard-Kim,SME,Healthcare,Sherry Davis,2025-01-05,2028-07-01,Active
-SG-C0219,White-Morales,Mid-Market,Healthcare,Denise Cruz,2023-10-03,2028-08-21,Active
-SG-C0220,Marsh-Banks,Enterprise,Technology,Ashley Horton,2025-11-25,2028-11-11,Inactive
+client_code,client_name,customer_tier,sector,relationship_manager,active_flag
+SG-CUST-0001,Coffey-Phillips SG,SME,Healthcare,SG Relationship Manager 01,Active
+SG-CUST-0002,Brock-Mcdonald SG,SME,Education,SG Relationship Manager 02,Active
+SG-CUST-0003,Taylor and Sons SG,SME,Technology,SG Relationship Manager 03,Active
+SG-CUST-0004,"Ramsey, Whitney and Coffey SG",Mid-Market,Energy,SG Relationship Manager 04,Active
+SG-CUST-0005,"Diaz, Gibbs and Smith SG",Mid-Market,Government,SG Relationship Manager 05,Active
+SG-CUST-0006,"Martinez, Richardson and Curry SG",Enterprise,Manufacturing,SG Relationship Manager 06,Inactive
+SG-CUST-0007,Richards-Carson SG,Enterprise,Technology,SG Relationship Manager 07,Active
+SG-CUST-0008,Rodriguez-Hall SG,Enterprise,Logistics,SG Relationship Manager 08,Active
+SG-CUST-0009,Harvey PLC SG,SME,Professional Services,SG Relationship Manager 09,Active
+SG-CUST-0010,Herman-Walker SG,SME,Government,SG Relationship Manager 10,Active
+SG-CUST-0011,Reid Group SG,Mid-Market,Healthcare,SG Relationship Manager 01,Active
+SG-CUST-0012,"Turner, Ortiz and Taylor SG",Enterprise,Financial Services,SG Relationship Manager 02,Active
+SG-CUST-0013,Torres Group SG,Strategic,Government,SG Relationship Manager 03,Active
+SG-CUST-0014,Davis PLC SG,Strategic,Education,SG Relationship Manager 04,Active
+SG-CUST-0015,Price LLC SG,SME,Energy,SG Relationship Manager 05,Active
+SG-CUST-0016,"Avery, Horton and Fernandez SG",Strategic,Professional Services,SG Relationship Manager 06,Active
+SG-CUST-0017,"Newton, Moore and Perry SG",Enterprise,Healthcare,SG Relationship Manager 07,Active
+SG-CUST-0018,Bass PLC SG,Enterprise,Professional Services,SG Relationship Manager 08,Active
+SG-CUST-0019,Crosby-Ramirez SG,Mid-Market,Retail,SG Relationship Manager 09,Active
+SG-CUST-0020,"Wood, Ramos and Sampson SG",SME,Retail,SG Relationship Manager 10,Active
+SG-CUST-0021,Garcia-Jennings SG,Strategic,Energy,SG Relationship Manager 01,Active
+SG-CUST-0022,"Winters, Newman and Brown SG",Strategic,Energy,SG Relationship Manager 02,Active
+SG-CUST-0023,Lopez-Martinez SG,Mid-Market,Healthcare,SG Relationship Manager 03,Active
+SG-CUST-0024,Davis-Lewis SG,Mid-Market,Retail,SG Relationship Manager 04,Active
+SG-CUST-0025,"Harper, Smith and Buchanan SG",SME,Professional Services,SG Relationship Manager 05,Active
+SG-CUST-0026,Zhang PLC SG,Mid-Market,Logistics,SG Relationship Manager 06,Active
+SG-CUST-0027,Jones PLC SG,SME,Education,SG Relationship Manager 07,Active
+SG-CUST-0028,Willis and Sons SG,Mid-Market,Government,SG Relationship Manager 08,Active
+SG-CUST-0029,Schroeder-Kramer SG,Enterprise,Manufacturing,SG Relationship Manager 09,Active
+SG-CUST-0030,"Smith, Garrison and Thomas SG",SME,Government,SG Relationship Manager 10,Active
+SG-CUST-0031,Fernandez and Sons SG,SME,Professional Services,SG Relationship Manager 01,Inactive
+SG-CUST-0032,Guerrero Inc SG,SME,Energy,SG Relationship Manager 02,Active
+SG-CUST-0033,Smith and Sons SG,Mid-Market,Professional Services,SG Relationship Manager 03,Active
+SG-CUST-0034,"Morris, Thompson and Williams SG",Enterprise,Manufacturing,SG Relationship Manager 04,Active
+SG-CUST-0035,"Fisher, Wilson and Brown SG",SME,Energy,SG Relationship Manager 05,Active
+SG-CUST-0036,Strickland-Palmer SG,Enterprise,Financial Services,SG Relationship Manager 06,Active
+SG-CUST-0037,Hayes and Sons SG,Strategic,Healthcare,SG Relationship Manager 07,Active
+SG-CUST-0038,"Williams, Logan and Camacho SG",Enterprise,Professional Services,SG Relationship Manager 08,Active
+SG-CUST-0039,"Turner, Schneider and Johnson SG",Enterprise,Healthcare,SG Relationship Manager 09,Active
+SG-CUST-0040,Boone-Simmons SG,Mid-Market,Technology,SG Relationship Manager 10,Active
+SG-CUST-0041,Henry Group SG,Enterprise,Financial Services,SG Relationship Manager 01,Active
+SG-CUST-0042,Lam LLC SG,Strategic,Energy,SG Relationship Manager 02,Active
+SG-CUST-0043,"Hernandez, Martinez and Weber SG",Enterprise,Government,SG Relationship Manager 03,Active
+SG-CUST-0044,"Kelley, Nguyen and Vang SG",Enterprise,Manufacturing,SG Relationship Manager 04,Active
+SG-CUST-0045,"Phillips, Wagner and Jordan SG",Strategic,Manufacturing,SG Relationship Manager 05,Active
+SG-CUST-0046,"Wilson, Pena and Rich SG",Mid-Market,Logistics,SG Relationship Manager 06,Active
+SG-CUST-0047,"Le, Lewis and Hayes SG",SME,Logistics,SG Relationship Manager 07,Active
+SG-CUST-0048,Gutierrez Group SG,Strategic,Healthcare,SG Relationship Manager 08,Active
+SG-CUST-0049,Perry-Davis SG,Mid-Market,Healthcare,SG Relationship Manager 09,Active
+SG-CUST-0050,Edwards-Scott SG,SME,Retail,SG Relationship Manager 10,Active
+SG-CUST-0051,Mcdaniel Group SG,Enterprise,Professional Services,SG Relationship Manager 01,Active
+SG-CUST-0052,Davis Inc SG,SME,Government,SG Relationship Manager 02,Active
+SG-CUST-0053,Reynolds Ltd SG,Enterprise,Government,SG Relationship Manager 03,Active
+SG-CUST-0054,"Watson, Anderson and Brown SG",Mid-Market,Financial Services,SG Relationship Manager 04,Active
+SG-CUST-0055,"Hoffman, Santiago and Jenkins SG",SME,Education,SG Relationship Manager 05,Active
+SG-CUST-0056,"Pugh, Henderson and Moon SG",Enterprise,Logistics,SG Relationship Manager 06,Active
+SG-CUST-0057,Schmitt PLC SG,SME,Manufacturing,SG Relationship Manager 07,Active
+SG-CUST-0058,Bell-Lane SG,SME,Retail,SG Relationship Manager 08,Active
+SG-CUST-0059,Moore Group SG,Strategic,Financial Services,SG Relationship Manager 09,Active
+SG-CUST-0060,Boone LLC SG,Enterprise,Manufacturing,SG Relationship Manager 10,Active
+SG-CUST-0061,"Richardson, Farmer and Andrews SG",Strategic,Financial Services,SG Relationship Manager 01,Active
+SG-CUST-0062,Bruce-Villegas SG,Mid-Market,Professional Services,SG Relationship Manager 02,Active
+SG-CUST-0063,"Austin, Day and Johnson SG",Strategic,Retail,SG Relationship Manager 03,Active
+SG-CUST-0064,"Gallegos, Adams and White SG",SME,Logistics,SG Relationship Manager 04,Active
+SG-CUST-0065,"Farmer, Dorsey and Bell SG",SME,Logistics,SG Relationship Manager 05,Active
+SG-CUST-0066,Kane PLC SG,Strategic,Healthcare,SG Relationship Manager 06,Active
+SG-CUST-0067,"Morales, Thomas and Schultz SG",Strategic,Retail,SG Relationship Manager 07,Active
+SG-CUST-0068,Davis PLC SG,Strategic,Retail,SG Relationship Manager 08,Active
+SG-CUST-0069,Bennett Group SG,Strategic,Healthcare,SG Relationship Manager 09,Active
+SG-CUST-0070,Moore-Collins SG,Mid-Market,Logistics,SG Relationship Manager 10,Active
+SG-CUST-0071,Frank-Bradley SG,SME,Energy,SG Relationship Manager 01,Active
+SG-CUST-0072,Ware and Sons SG,SME,Professional Services,SG Relationship Manager 02,Active
+SG-CUST-0073,Webster Inc SG,Strategic,Technology,SG Relationship Manager 03,Active
+SG-CUST-0074,"Miller, Ramos and Coleman SG",Mid-Market,Logistics,SG Relationship Manager 04,Active
+SG-CUST-0075,"Ramos, Nelson and Fischer SG",Enterprise,Government,SG Relationship Manager 05,Active
+SG-CUST-0076,Reed Inc SG,Enterprise,Energy,SG Relationship Manager 06,Active
+SG-CUST-0077,Gregory-Watkins SG,Strategic,Professional Services,SG Relationship Manager 07,Active
+SG-CUST-0078,"Estrada, Williams and Foster SG",Enterprise,Financial Services,SG Relationship Manager 08,Active
+SG-CUST-0079,"Brown, Harris and Dougherty SG",Enterprise,Manufacturing,SG Relationship Manager 09,Active
+SG-CUST-0080,Duran LLC SG,SME,Energy,SG Relationship Manager 10,Active
+SG-CUST-0081,Wilson-Jimenez SG,Mid-Market,Government,SG Relationship Manager 01,Active
+SG-CUST-0082,Thompson-James SG,SME,Financial Services,SG Relationship Manager 02,Active
+SG-CUST-0083,"Hall, Hansen and Barnett SG",Mid-Market,Education,SG Relationship Manager 03,Active
+SG-CUST-0084,Jones-Hensley SG,SME,Technology,SG Relationship Manager 04,Active
+SG-CUST-0085,Graham Group SG,SME,Logistics,SG Relationship Manager 05,Active
+SG-CUST-0086,Atkins PLC SG,Enterprise,Manufacturing,SG Relationship Manager 06,Active
+SG-CUST-0087,Berry-Mckinney SG,Strategic,Logistics,SG Relationship Manager 07,Active
+SG-CUST-0088,Roberts-Sullivan SG,Strategic,Healthcare,SG Relationship Manager 08,Active
+SG-CUST-0089,Jackson-Meza SG,Enterprise,Financial Services,SG Relationship Manager 09,Active
+SG-CUST-0090,Collier-Gillespie SG,Mid-Market,Technology,SG Relationship Manager 10,Active
+SG-CUST-0091,Kim Inc SG,SME,Retail,SG Relationship Manager 01,Active
+SG-CUST-0092,Graham Group SG,Mid-Market,Logistics,SG Relationship Manager 02,Active
+SG-CUST-0093,"Miller, Harrell and Reese SG",SME,Technology,SG Relationship Manager 03,Active
+SG-CUST-0094,Cook and Sons SG,Strategic,Energy,SG Relationship Manager 04,Active
+SG-CUST-0095,Dixon Inc SG,Enterprise,Education,SG Relationship Manager 05,Active
+SG-CUST-0096,"Hicks, Bullock and Bailey SG",Strategic,Education,SG Relationship Manager 06,Active
+SG-CUST-0097,"Mullen, Brewer and Hernandez SG",Enterprise,Professional Services,SG Relationship Manager 07,Active
+SG-CUST-0098,Thomas and Sons SG,Mid-Market,Education,SG Relationship Manager 08,Active
+SG-CUST-0099,Morrison Ltd SG,Enterprise,Manufacturing,SG Relationship Manager 09,Active
+SG-CUST-0100,Thompson Ltd SG,Mid-Market,Professional Services,SG Relationship Manager 10,Active
+SG-CUST-0101,Marshall-Elliott SG,Mid-Market,Technology,SG Relationship Manager 01,Active
+SG-CUST-0102,"Cole, Glass and Cunningham SG",Strategic,Education,SG Relationship Manager 02,Inactive
+SG-CUST-0103,"Downs, Morris and Maddox SG",Enterprise,Manufacturing,SG Relationship Manager 03,Active
+SG-CUST-0104,Hernandez-Jones SG,Enterprise,Logistics,SG Relationship Manager 04,Active
+SG-CUST-0105,Welch-Hogan SG,Mid-Market,Manufacturing,SG Relationship Manager 05,Active
+SG-CUST-0106,"Brown, Romero and Collins SG",Strategic,Financial Services,SG Relationship Manager 06,Active
+SG-CUST-0107,Johnson-Wood SG,Mid-Market,Technology,SG Relationship Manager 07,Active
+SG-CUST-0108,Jones-Lin SG,SME,Professional Services,SG Relationship Manager 08,Active
+SG-CUST-0109,Gilbert PLC SG,Enterprise,Manufacturing,SG Relationship Manager 09,Active
+SG-CUST-0110,Ford-Spencer SG,SME,Manufacturing,SG Relationship Manager 10,Active
+SG-CUST-0111,"Huang, Cole and Pacheco SG",Enterprise,Government,SG Relationship Manager 01,Active
+SG-CUST-0112,"Lopez, Jacobs and Mason SG",Enterprise,Education,SG Relationship Manager 02,Active
+SG-CUST-0113,Hayes LLC SG,Mid-Market,Retail,SG Relationship Manager 03,Active
+SG-CUST-0114,"Miller, Lucas and Williams SG",Enterprise,Retail,SG Relationship Manager 04,Active
+SG-CUST-0115,"Kim, Gonzales and Mills SG",Mid-Market,Manufacturing,SG Relationship Manager 05,Active
+SG-CUST-0116,Cox LLC SG,Strategic,Energy,SG Relationship Manager 06,Active
+SG-CUST-0117,Ortiz-Morgan SG,Strategic,Technology,SG Relationship Manager 07,Active
+SG-CUST-0118,"Williams, Mccoy and Cook SG",Mid-Market,Education,SG Relationship Manager 08,Active
+SG-CUST-0119,Davis-Gregory SG,Enterprise,Manufacturing,SG Relationship Manager 09,Active
+SG-CUST-0120,King-York SG,Mid-Market,Manufacturing,SG Relationship Manager 10,Active
+SG-CUST-0121,"Marks, Cook and Aguilar SG",SME,Manufacturing,SG Relationship Manager 01,Active
+SG-CUST-0122,Rangel LLC SG,SME,Retail,SG Relationship Manager 02,Active
+SG-CUST-0123,"Hale, Myers and Larson SG",Strategic,Healthcare,SG Relationship Manager 03,Active
+SG-CUST-0124,Collins Group SG,Strategic,Energy,SG Relationship Manager 04,Active
+SG-CUST-0125,"Conner, Li and Santiago SG",Strategic,Financial Services,SG Relationship Manager 05,Active
+SG-CUST-0126,"Osborn, Gaines and Davis SG",Enterprise,Technology,SG Relationship Manager 06,Active
+SG-CUST-0127,"Henderson, Cox and Cox SG",Enterprise,Education,SG Relationship Manager 07,Active
+SG-CUST-0128,Bean LLC SG,Enterprise,Energy,SG Relationship Manager 08,Active
+SG-CUST-0129,Lee-Cooke SG,Strategic,Technology,SG Relationship Manager 09,Active
+SG-CUST-0130,Jones Inc SG,Enterprise,Logistics,SG Relationship Manager 10,Active
+SG-CUST-0131,"Wise, Conley and Stephenson SG",Enterprise,Education,SG Relationship Manager 01,Active
+SG-CUST-0132,Stanley PLC SG,SME,Energy,SG Relationship Manager 02,Active
+SG-CUST-0133,Harper and Sons SG,Strategic,Retail,SG Relationship Manager 03,Active
+SG-CUST-0134,White Ltd SG,Strategic,Energy,SG Relationship Manager 04,Active
+SG-CUST-0135,"Lamb, Martin and Kim SG",Mid-Market,Manufacturing,SG Relationship Manager 05,Active
+SG-CUST-0136,Diaz-Ball SG,Mid-Market,Financial Services,SG Relationship Manager 06,Active
+SG-CUST-0137,Bishop-Goodwin SG,SME,Logistics,SG Relationship Manager 07,Active
+SG-CUST-0138,Young-Allen SG,Enterprise,Retail,SG Relationship Manager 08,Active
+SG-CUST-0139,Mckee-Lee SG,Enterprise,Manufacturing,SG Relationship Manager 09,Active
+SG-CUST-0140,"Valentine, Joyce and Murray SG",SME,Logistics,SG Relationship Manager 10,Active
+SG-CUST-0141,Strickland-Shaw SG,SME,Healthcare,SG Relationship Manager 01,Inactive
+SG-CUST-0142,Burch-Montoya SG,Strategic,Healthcare,SG Relationship Manager 02,Active
+SG-CUST-0143,"Taylor, Wright and Davidson SG",Mid-Market,Logistics,SG Relationship Manager 03,Active
+SG-CUST-0144,Spencer-Garcia SG,Enterprise,Manufacturing,SG Relationship Manager 04,Active
+SG-CUST-0145,"Rosales, Mitchell and Hines SG",Strategic,Government,SG Relationship Manager 05,Active
+SG-CUST-0146,Cole-Palmer SG,Mid-Market,Healthcare,SG Relationship Manager 06,Inactive
+SG-CUST-0147,Davis-Lozano SG,Mid-Market,Retail,SG Relationship Manager 07,Active
+SG-CUST-0148,Wilkerson-Arias SG,SME,Energy,SG Relationship Manager 08,Active
+SG-CUST-0149,Brown-Shaw SG,Mid-Market,Logistics,SG Relationship Manager 09,Active
+SG-CUST-0150,Hughes Inc SG,SME,Government,SG Relationship Manager 10,Active
+SG-CUST-0151,Walker-Flores SG,SME,Manufacturing,SG Relationship Manager 01,Active
+SG-CUST-0152,Combs Ltd SG,SME,Education,SG Relationship Manager 02,Active
+SG-CUST-0153,Moody-Taylor SG,Mid-Market,Government,SG Relationship Manager 03,Active
+SG-CUST-0154,Lowery-Kennedy SG,Mid-Market,Technology,SG Relationship Manager 04,Active
+SG-CUST-0155,Blake Group SG,Strategic,Financial Services,SG Relationship Manager 05,Active
+SG-CUST-0156,Gilbert-Bullock SG,Strategic,Education,SG Relationship Manager 06,Active
+SG-CUST-0157,Scott and Sons SG,SME,Government,SG Relationship Manager 07,Active
+SG-CUST-0158,"Bentley, Lynch and Henderson SG",SME,Manufacturing,SG Relationship Manager 08,Active
+SG-CUST-0159,Young-Martinez SG,SME,Financial Services,SG Relationship Manager 09,Active
+SG-CUST-0160,Barnes PLC SG,Enterprise,Manufacturing,SG Relationship Manager 10,Active
+SG-CUST-0161,Brown-Copeland SG,Mid-Market,Healthcare,SG Relationship Manager 01,Active
+SG-CUST-0162,Carlson-Smith SG,Mid-Market,Retail,SG Relationship Manager 02,Active
+SG-CUST-0163,"Andrews, Higgins and Carter SG",Mid-Market,Education,SG Relationship Manager 03,Inactive
+SG-CUST-0164,Mendez and Sons SG,SME,Healthcare,SG Relationship Manager 04,Inactive
+SG-CUST-0165,"Butler, Beck and Miller SG",SME,Manufacturing,SG Relationship Manager 05,Active
+SG-CUST-0166,Jones-Fox SG,Enterprise,Financial Services,SG Relationship Manager 06,Active
+SG-CUST-0167,"Hartman, Romero and Smith SG",Mid-Market,Government,SG Relationship Manager 07,Active
+SG-CUST-0168,Williams-Hughes SG,Mid-Market,Logistics,SG Relationship Manager 08,Active
+SG-CUST-0169,King-Smith SG,Enterprise,Energy,SG Relationship Manager 09,Inactive
+SG-CUST-0170,Cooper Ltd SG,Mid-Market,Healthcare,SG Relationship Manager 10,Active
+SG-CUST-0171,"Fuller, Ingram and Moss SG",Strategic,Education,SG Relationship Manager 01,Active
+SG-CUST-0172,Anderson-Bell SG,Strategic,Education,SG Relationship Manager 02,Active
+SG-CUST-0173,Li-Thompson SG,Mid-Market,Financial Services,SG Relationship Manager 03,Active
+SG-CUST-0174,"Marshall, Dominguez and Welch SG",SME,Logistics,SG Relationship Manager 04,Active
+SG-CUST-0175,Brown Group SG,Enterprise,Energy,SG Relationship Manager 05,Active
+SG-CUST-0176,Carter Inc SG,Enterprise,Technology,SG Relationship Manager 06,Active
+SG-CUST-0177,Blackwell LLC SG,SME,Energy,SG Relationship Manager 07,Active
+SG-CUST-0178,Robertson-Hays SG,SME,Retail,SG Relationship Manager 08,Active
+SG-CUST-0179,"Kennedy, Johnson and Lucas SG",SME,Retail,SG Relationship Manager 09,Active
+SG-CUST-0180,Kelly-Norman SG,Mid-Market,Technology,SG Relationship Manager 10,Active
+SG-CUST-0181,"Rivera, Martinez and Richardson SG",Mid-Market,Healthcare,SG Relationship Manager 01,Active
+SG-CUST-0182,Paul-Kline SG,Enterprise,Logistics,SG Relationship Manager 02,Active
+SG-CUST-0183,Morgan-Lopez SG,Mid-Market,Technology,SG Relationship Manager 03,Active
+SG-CUST-0184,"Jimenez, Glass and Stone SG",SME,Education,SG Relationship Manager 04,Active
+SG-CUST-0185,Acosta Inc SG,Strategic,Education,SG Relationship Manager 05,Active
+SG-CUST-0186,Morrison-Short SG,SME,Education,SG Relationship Manager 06,Active
+SG-CUST-0187,"Carter, Garcia and Murphy SG",Strategic,Professional Services,SG Relationship Manager 07,Active
+SG-CUST-0188,Parker-Morrison SG,Strategic,Logistics,SG Relationship Manager 08,Active
+SG-CUST-0189,Jackson-Wallace SG,Strategic,Technology,SG Relationship Manager 09,Active
+SG-CUST-0190,Williams-Berg SG,Enterprise,Government,SG Relationship Manager 10,Active
+SG-CUST-0191,Mendez-Graham SG,SME,Healthcare,SG Relationship Manager 01,Active
+SG-CUST-0192,"Whitney, Gould and Jones SG",Enterprise,Logistics,SG Relationship Manager 02,Active
+SG-CUST-0193,"Sullivan, Palmer and Brady SG",Strategic,Education,SG Relationship Manager 03,Active
+SG-CUST-0194,Cisneros and Sons SG,Strategic,Education,SG Relationship Manager 04,Active
+SG-CUST-0195,"Gregory, Kim and Martinez SG",SME,Financial Services,SG Relationship Manager 05,Active
+SG-CUST-0196,Osborne LLC SG,Mid-Market,Technology,SG Relationship Manager 06,Active
+SG-CUST-0197,Reyes-Bradley SG,Enterprise,Manufacturing,SG Relationship Manager 07,Active
+SG-CUST-0198,"Hernandez, Cole and Watson SG",Enterprise,Education,SG Relationship Manager 08,Active
+SG-CUST-0199,Hines-Berry SG,Mid-Market,Government,SG Relationship Manager 09,Active
+SG-CUST-0200,"Richardson, Edwards and Ramirez SG",Strategic,Manufacturing,SG Relationship Manager 10,Active
+SG-CUST-0201,Johnson and Sons SG,Strategic,Professional Services,SG Relationship Manager 01,Active
+SG-CUST-0202,Holmes-Mcintyre SG,Enterprise,Logistics,SG Relationship Manager 02,Active
+SG-CUST-0203,Green LLC SG,Mid-Market,Government,SG Relationship Manager 03,Active
+SG-CUST-0204,"Griffin, Davies and Mitchell SG",Strategic,Professional Services,SG Relationship Manager 04,Active
+SG-CUST-0205,Gonzalez-Taylor SG,Mid-Market,Government,SG Relationship Manager 05,Active
+SG-CUST-0206,Hayes Ltd SG,SME,Technology,SG Relationship Manager 06,Active
+SG-CUST-0207,Osborn-Cochran SG,Mid-Market,Professional Services,SG Relationship Manager 07,Active
+SG-CUST-0208,Contreras-Mckinney SG,SME,Logistics,SG Relationship Manager 08,Active
+SG-CUST-0209,"Daniels, Vance and York SG",SME,Energy,SG Relationship Manager 09,Active
+SG-CUST-0210,"Mckinney, Graves and Thompson SG",Enterprise,Professional Services,SG Relationship Manager 10,Active
+SG-CUST-0211,Hicks-Martinez SG,Strategic,Logistics,SG Relationship Manager 01,Active
+SG-CUST-0212,Conner and Sons SG,Enterprise,Retail,SG Relationship Manager 02,Active
+SG-CUST-0213,Johnson-Spencer SG,Enterprise,Professional Services,SG Relationship Manager 03,Active
+SG-CUST-0214,Mcdonald-Bird SG,SME,Manufacturing,SG Relationship Manager 04,Active
+SG-CUST-0215,Salazar Inc SG,SME,Technology,SG Relationship Manager 05,Active
+SG-CUST-0216,Parker Ltd SG,Enterprise,Financial Services,SG Relationship Manager 06,Active
+SG-CUST-0217,"Mendoza, Jenkins and Ortiz SG",Strategic,Healthcare,SG Relationship Manager 07,Active
+SG-CUST-0218,"Jones, Compton and Day SG",SME,Technology,SG Relationship Manager 08,Active
+SG-CUST-0219,Owens-Holmes SG,Mid-Market,Logistics,SG Relationship Manager 09,Active
+SG-CUST-0220,Humphrey PLC SG,Strategic,Education,SG Relationship Manager 10,Active

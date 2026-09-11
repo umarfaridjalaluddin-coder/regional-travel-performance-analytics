@@ -1,71 +1,71 @@
-provider_code,provider_name,provider_type,preferred,provider_country,provider_status
-ID-S0001,"Robles, Nguyen and Banks",Hotel,Y,ID,Active
-ID-S0002,Patel-Morales,Air,Y,ID,Active
-ID-S0003,Allen-Sanchez,Ground,Y,ID,Active
-ID-S0004,Dickson Group,Hotel,N,ID,Active
-ID-S0005,Peterson Ltd,Air,N,ID,Active
-ID-S0006,"Reynolds, Baird and Bradley",Hotel,Y,ID,Active
-ID-S0007,Stephens-Young,Other,N,ID,Active
-ID-S0008,"Caldwell, Stevenson and Joseph",Air,Y,ID,Active
-ID-S0009,Wilson-Carlson,Hotel,Y,ID,Active
-ID-S0010,Peters-Short,Hotel,N,ID,Active
-ID-S0011,Parker Group,Other,N,ID,Active
-ID-S0012,George Ltd,Hotel,N,ID,Active
-ID-S0013,"Wise, Gray and Snyder",Hotel,N,ID,Active
-ID-S0014,"Brown, Robinson and Taylor",Other,N,ID,Active
-ID-S0015,"Berger, Fields and Smith",Hotel,N,ID,Active
-ID-S0016,Guerrero Group,Air,Y,ID,Active
-ID-S0017,"Carter, Gilbert and West",Hotel,N,ID,Active
-ID-S0018,Maldonado LLC,Ground,N,ID,Active
-ID-S0019,Hudson-Gentry,Other,Y,ID,Active
-ID-S0020,Sellers-Zuniga,Hotel,Y,ID,Active
-ID-S0021,"Haas, Cooper and Davis",Hotel,Y,ID,Active
-ID-S0022,Carr PLC,Hotel,N,ID,Active
-ID-S0023,Abbott-Phelps,Ground,N,ID,Active
-ID-S0024,Wood PLC,Ground,Y,ID,Active
-ID-S0025,Smith PLC,Hotel,Y,ID,Active
-ID-S0026,Rodriguez-Campbell,Ground,N,ID,Active
-ID-S0027,Young Ltd,Air,N,ID,Active
-ID-S0028,"Long, Flores and Reyes",Ground,N,ID,Active
-ID-S0029,Graham-Clark,Hotel,N,ID,Active
-ID-S0030,Wells and Sons,Hotel,N,ID,Active
-ID-S0031,"Cruz, Middleton and Larsen",Hotel,Y,ID,Active
-ID-S0032,Roberts Ltd,Ground,Y,ID,Active
-ID-S0033,Taylor Inc,Hotel,Y,ID,Inactive
-ID-S0034,"Smith, Griffith and Tucker",Ground,Y,ID,Active
-ID-S0035,Proctor-Taylor,Hotel,Y,ID,Active
-ID-S0036,May Group,Other,N,ID,Active
-ID-S0037,English-Dominguez,Air,Y,ID,Active
-ID-S0038,Hanson-Gibson,Ground,N,ID,Active
-ID-S0039,Arnold-Cole,Air,Y,ID,Active
-ID-S0040,Perez-Coleman,Hotel,N,ID,Active
-ID-S0041,Lane Ltd,Other,Y,ID,Active
-ID-S0042,Joseph LLC,Air,Y,ID,Active
-ID-S0043,House-Johnston,Air,N,ID,Active
-ID-S0044,Good PLC,Ground,Y,ID,Active
-ID-S0045,Bush-Wilson,Hotel,Y,ID,Active
-ID-S0046,Nixon-Miller,Air,N,ID,Active
-ID-S0047,"Simon, Terrell and Terrell",Hotel,N,ID,Active
-ID-S0048,Marshall-Miller,Air,N,ID,Active
-ID-S0049,"Davis, Kennedy and Harmon",Air,Y,ID,Active
-ID-S0050,"Miller, Schultz and Yates",Other,N,ID,Active
-ID-S0051,Austin-Berger,Ground,Y,ID,Active
-ID-S0052,"Osborne, Harrison and Hunt",Hotel,Y,ID,Active
-ID-S0053,Berry-Rivera,Air,Y,ID,Active
-ID-S0054,Yu-Yates,Hotel,Y,ID,Active
-ID-S0055,Jackson-Neal,Ground,Y,ID,Active
-ID-S0056,"Curry, Acosta and Elliott",Air,Y,ID,Active
-ID-S0057,Soto PLC,Ground,Y,ID,Active
-ID-S0058,Berry Ltd,Hotel,Y,ID,Active
-ID-S0059,Lamb-Weber,Air,N,ID,Active
-ID-S0060,Washington-Martinez,Air,N,ID,Active
-ID-S0061,York LLC,Hotel,N,ID,Active
-ID-S0062,Anderson-Campbell,Hotel,Y,ID,Active
-ID-S0063,Smith-Rodriguez,Other,Y,ID,Active
-ID-S0064,Kent Ltd,Air,N,ID,Active
-ID-S0065,Hopkins LLC,Air,Y,ID,Active
-ID-S0066,Green Ltd,Air,Y,ID,Active
-ID-S0067,Washington PLC,Air,N,ID,Active
-ID-S0068,Cooper Inc,Ground,Y,ID,Active
-ID-S0069,Larson and Sons,Ground,Y,ID,Active
-ID-S0070,Mullins-Gutierrez,Hotel,Y,ID,Active
+provider_code,provider_name,provider_type,preferred,provider_status
+ID-SUP-001,Synthetic Supplier ID 001,Hotel,Y,Active
+ID-SUP-002,Synthetic Supplier ID 002,Travel Service,Y,Active
+ID-SUP-003,Synthetic Supplier ID 003,Airline,Y,Active
+ID-SUP-004,Synthetic Supplier ID 004,Hotel,Y,Active
+ID-SUP-005,Synthetic Supplier ID 005,Airline,Y,Active
+ID-SUP-006,Synthetic Supplier ID 006,Travel Service,N,Active
+ID-SUP-007,Synthetic Supplier ID 007,Ground Transport,Y,Active
+ID-SUP-008,Synthetic Supplier ID 008,Ground Transport,Y,Active
+ID-SUP-009,Synthetic Supplier ID 009,Airline,Y,Active
+ID-SUP-010,Synthetic Supplier ID 010,Hotel,N,Active
+ID-SUP-011,Synthetic Supplier ID 011,Ground Transport,Y,Active
+ID-SUP-012,Synthetic Supplier ID 012,Travel Service,Y,Active
+ID-SUP-013,Synthetic Supplier ID 013,Hotel,Y,Active
+ID-SUP-014,Synthetic Supplier ID 014,Airline,Y,Active
+ID-SUP-015,Synthetic Supplier ID 015,Travel Service,Y,Active
+ID-SUP-016,Synthetic Supplier ID 016,Hotel,N,Active
+ID-SUP-017,Synthetic Supplier ID 017,Ground Transport,Y,Active
+ID-SUP-018,Synthetic Supplier ID 018,Ground Transport,Y,Active
+ID-SUP-019,Synthetic Supplier ID 019,Ground Transport,Y,Active
+ID-SUP-020,Synthetic Supplier ID 020,Hotel,Y,Active
+ID-SUP-021,Synthetic Supplier ID 021,Travel Service,Y,Active
+ID-SUP-022,Synthetic Supplier ID 022,Airline,Y,Active
+ID-SUP-023,Synthetic Supplier ID 023,Travel Service,Y,Active
+ID-SUP-024,Synthetic Supplier ID 024,Airline,Y,Inactive
+ID-SUP-025,Synthetic Supplier ID 025,Ground Transport,Y,Active
+ID-SUP-026,Synthetic Supplier ID 026,Travel Service,Y,Active
+ID-SUP-027,Synthetic Supplier ID 027,Ground Transport,N,Active
+ID-SUP-028,Synthetic Supplier ID 028,Travel Service,N,Active
+ID-SUP-029,Synthetic Supplier ID 029,Airline,Y,Active
+ID-SUP-030,Synthetic Supplier ID 030,Travel Service,Y,Active
+ID-SUP-031,Synthetic Supplier ID 031,Travel Service,Y,Active
+ID-SUP-032,Synthetic Supplier ID 032,Ground Transport,N,Active
+ID-SUP-033,Synthetic Supplier ID 033,Airline,Y,Active
+ID-SUP-034,Synthetic Supplier ID 034,Airline,Y,Active
+ID-SUP-035,Synthetic Supplier ID 035,Travel Service,Y,Active
+ID-SUP-036,Synthetic Supplier ID 036,Travel Service,Y,Active
+ID-SUP-037,Synthetic Supplier ID 037,Ground Transport,N,Active
+ID-SUP-038,Synthetic Supplier ID 038,Airline,Y,Active
+ID-SUP-039,Synthetic Supplier ID 039,Ground Transport,Y,Active
+ID-SUP-040,Synthetic Supplier ID 040,Travel Service,Y,Active
+ID-SUP-041,Synthetic Supplier ID 041,Hotel,Y,Active
+ID-SUP-042,Synthetic Supplier ID 042,Hotel,Y,Active
+ID-SUP-043,Synthetic Supplier ID 043,Travel Service,Y,Active
+ID-SUP-044,Synthetic Supplier ID 044,Airline,N,Active
+ID-SUP-045,Synthetic Supplier ID 045,Travel Service,Y,Active
+ID-SUP-046,Synthetic Supplier ID 046,Airline,Y,Active
+ID-SUP-047,Synthetic Supplier ID 047,Ground Transport,N,Active
+ID-SUP-048,Synthetic Supplier ID 048,Travel Service,Y,Active
+ID-SUP-049,Synthetic Supplier ID 049,Ground Transport,Y,Active
+ID-SUP-050,Synthetic Supplier ID 050,Ground Transport,N,Active
+ID-SUP-051,Synthetic Supplier ID 051,Airline,Y,Active
+ID-SUP-052,Synthetic Supplier ID 052,Airline,Y,Active
+ID-SUP-053,Synthetic Supplier ID 053,Hotel,Y,Active
+ID-SUP-054,Synthetic Supplier ID 054,Ground Transport,N,Active
+ID-SUP-055,Synthetic Supplier ID 055,Hotel,N,Active
+ID-SUP-056,Synthetic Supplier ID 056,Ground Transport,Y,Active
+ID-SUP-057,Synthetic Supplier ID 057,Hotel,Y,Active
+ID-SUP-058,Synthetic Supplier ID 058,Hotel,N,Active
+ID-SUP-059,Synthetic Supplier ID 059,Ground Transport,Y,Active
+ID-SUP-060,Synthetic Supplier ID 060,Hotel,Y,Active
+ID-SUP-061,Synthetic Supplier ID 061,Airline,Y,Active
+ID-SUP-062,Synthetic Supplier ID 062,Ground Transport,Y,Active
+ID-SUP-063,Synthetic Supplier ID 063,Airline,N,Active
+ID-SUP-064,Synthetic Supplier ID 064,Airline,N,Active
+ID-SUP-065,Synthetic Supplier ID 065,Ground Transport,N,Active
+ID-SUP-066,Synthetic Supplier ID 066,Travel Service,N,Active
+ID-SUP-067,Synthetic Supplier ID 067,Ground Transport,Y,Active
+ID-SUP-068,Synthetic Supplier ID 068,Hotel,N,Active
+ID-SUP-069,Synthetic Supplier ID 069,Hotel,Y,Active
+ID-SUP-070,Synthetic Supplier ID 070,Travel Service,Y,Active

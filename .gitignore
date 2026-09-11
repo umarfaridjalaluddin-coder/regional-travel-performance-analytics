@@ -1,0 +1,53 @@
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.class
+
+# Test / tooling cache
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local database files
+*.duckdb
+*.duckdb.wal
+
+# Power BI temporary files
+*.pbit.tmp
+~$*.pbix
+
+# Generated outputs
+outputs/*
+!outputs/.gitkeep
+
+# Processed/generated data
+data/staging/*
+data/silver/*
+data/gold/*
+
+# Keep placeholder files
+!data/staging/.gitkeep
+!data/silver/.gitkeep
+!data/gold/.gitkeep

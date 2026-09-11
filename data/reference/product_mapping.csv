@@ -1,0 +1,13 @@
+country_code,source_product,regional_product
+MY,Air,Air
+MY,Hotel,Hotel
+MY,Ground,Ground
+MY,Other,Other
+SG,Flight,Air
+SG,Accommodation,Hotel
+SG,Transport,Ground
+SG,Other Service,Other
+ID,AIR,Air
+ID,HOTEL,Hotel
+ID,GROUND,Ground
+ID,OTHER,Other

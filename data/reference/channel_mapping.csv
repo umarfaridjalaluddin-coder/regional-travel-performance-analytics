@@ -1,0 +1,7 @@
+country_code,source_channel,regional_channel
+MY,Online,Online
+MY,Offline,Offline
+SG,OBT,Online
+SG,Agent,Offline
+ID,ONLINE,Online
+ID,MANUAL,Offline

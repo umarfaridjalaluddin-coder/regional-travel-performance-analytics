@@ -1,0 +1,25 @@
+{
+  "project_name": "Regional Travel Performance Analytics",
+  "synthetic_data": true,
+  "random_seed": 42,
+  "start_date": "2024-09-01",
+  "end_date": "2026-08-31",
+  "reporting_currency": "MYR",
+  "countries": {
+    "MY": {
+      "country_name": "Malaysia",
+      "local_currency": "MYR",
+      "target_booking_rows": 80000
+    },
+    "SG": {
+      "country_name": "Singapore",
+      "local_currency": "SGD",
+      "target_booking_rows": 50000
+    },
+    "ID": {
+      "country_name": "Indonesia",
+      "local_currency": "IDR",
+      "target_booking_rows": 50000
+    }
+  }
+}

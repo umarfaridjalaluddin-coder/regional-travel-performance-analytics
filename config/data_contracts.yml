@@ -1,0 +1,229 @@
+version: 1
+
+datasets:
+
+  malaysia_bookings:
+    country_code: MY
+    file: data/raw/malaysia/bookings.csv
+    format: csv
+    primary_key: booking_id
+
+    required_columns:
+      booking_id:
+        dtype: string
+        nullable: false
+
+      booking_date:
+        dtype: datetime
+        nullable: false
+
+      travel_date:
+        dtype: datetime
+        nullable: false
+
+      customer_id:
+        dtype: string
+        nullable: false
+
+      supplier_id:
+        dtype: string
+        nullable: false
+
+      product_type:
+        dtype: string
+        nullable: false
+        allowed_values:
+          - Air
+          - Hotel
+          - Ground
+          - Other
+
+      booking_channel:
+        dtype: string
+        nullable: false
+        allowed_values:
+          - Online
+          - Offline
+
+      destination_country:
+        dtype: string
+        nullable: false
+
+      currency:
+        dtype: string
+        nullable: false
+        allowed_values:
+          - MYR
+
+      booking_value:
+        dtype: float
+        nullable: false
+        minimum: 0
+
+      revenue:
+        dtype: float
+        nullable: false
+
+      cost:
+        dtype: float
+        nullable: false
+
+      booking_status:
+        dtype: string
+        nullable: false
+        allowed_values:
+          - Confirmed
+          - Cancelled
+          - Refunded
+
+      agent_id:
+        dtype: string
+        nullable: true
+
+  singapore_transactions:
+    country_code: SG
+    file: data/raw/singapore/transactions.xlsx
+    format: excel
+    primary_key: transaction_ref
+
+    required_columns:
+      transaction_ref:
+        dtype: string
+        nullable: false
+
+      txn_date:
+        dtype: datetime
+        nullable: false
+
+      departure_date:
+        dtype: datetime
+        nullable: false
+
+      client_code:
+        dtype: string
+        nullable: false
+
+      vendor_code:
+        dtype: string
+        nullable: false
+
+      service_category:
+        dtype: string
+        nullable: false
+        allowed_values:
+          - Flight
+          - Accommodation
+          - Transport
+          - Other Service
+
+      booking_method:
+        dtype: string
+        nullable: false
+        allowed_values:
+          - OBT
+          - Agent
+
+      destination:
+        dtype: string
+        nullable: false
+
+      txn_currency:
+        dtype: string
+        nullable: false
+        allowed_values:
+          - SGD
+
+      gross_sales:
+        dtype: float
+        nullable: false
+        minimum: 0
+
+      net_revenue:
+        dtype: float
+        nullable: false
+
+      direct_cost:
+        dtype: float
+        nullable: false
+
+      status:
+        dtype: string
+        nullable: false
+        allowed_values:
+          - Confirmed
+          - Cancelled
+          - Refunded
+
+  indonesia_bookings:
+    country_code: ID
+    file: data/raw/indonesia/booking_export.csv
+    format: csv
+    primary_key: booking_no
+
+    required_columns:
+      booking_no:
+        dtype: string
+        nullable: false
+
+      created_at:
+        dtype: datetime
+        nullable: false
+
+      journey_date:
+        dtype: datetime
+        nullable: false
+
+      account_no:
+        dtype: string
+        nullable: false
+
+      provider_code:
+        dtype: string
+        nullable: false
+
+      travel_product:
+        dtype: string
+        nullable: false
+        allowed_values:
+          - AIR
+          - HOTEL
+          - GROUND
+          - OTHER
+
+      channel:
+        dtype: string
+        nullable: false
+        allowed_values:
+          - ONLINE
+          - MANUAL
+
+      destination:
+        dtype: string
+        nullable: false
+
+      currency_code:
+        dtype: string
+        nullable: false
+        allowed_values:
+          - IDR
+
+      total_booking_amount:
+        dtype: float
+        nullable: false
+        minimum: 0
+
+      service_revenue:
+        dtype: float
+        nullable: false
+
+      supplier_cost:
+        dtype: float
+        nullable: false
+
+      booking_state:
+        dtype: string
+        nullable: false
+        allowed_values:
+          - Confirmed
+          - Cancelled
+          - Refunded

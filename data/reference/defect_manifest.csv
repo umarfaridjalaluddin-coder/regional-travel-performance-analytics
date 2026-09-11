@@ -1,0 +1,31 @@
+country_code,dataset,defect_type,injected_count,description
+MY,booking,missing_customer_id,23,Customer identifier deliberately set to null.
+MY,booking,missing_supplier_id,23,Supplier identifier deliberately set to null.
+MY,booking,orphan_customer,16,Booking references customer absent from customer master.
+MY,booking,orphan_supplier,16,Booking references supplier absent from supplier master.
+MY,booking,unexpected_negative_booking_value,16,Booking value deliberately changed to negative.
+MY,booking,invalid_currency,16,Invalid ISO-style currency code inserted.
+MY,booking,travel_before_booking,23,Travel date deliberately occurs before booking date.
+MY,booking,invalid_booking_status,16,Invalid booking status inserted.
+MY,booking,inconsistent_product_category,40,Alternative product descriptions deliberately inserted.
+MY,booking,duplicate_transaction,40,Exact duplicate transaction rows appended.
+SG,booking,missing_customer_id,14,Customer identifier deliberately set to null.
+SG,booking,missing_supplier_id,14,Supplier identifier deliberately set to null.
+SG,booking,orphan_customer,10,Booking references customer absent from customer master.
+SG,booking,orphan_supplier,10,Booking references supplier absent from supplier master.
+SG,booking,unexpected_negative_booking_value,10,Booking value deliberately changed to negative.
+SG,booking,invalid_currency,10,Invalid ISO-style currency code inserted.
+SG,booking,travel_before_booking,14,Travel date deliberately occurs before booking date.
+SG,booking,invalid_booking_status,10,Invalid booking status inserted.
+SG,booking,inconsistent_product_category,25,Alternative product descriptions deliberately inserted.
+SG,booking,duplicate_transaction,25,Exact duplicate transaction rows appended.
+ID,booking,missing_customer_id,14,Customer identifier deliberately set to null.
+ID,booking,missing_supplier_id,14,Supplier identifier deliberately set to null.
+ID,booking,orphan_customer,10,Booking references customer absent from customer master.
+ID,booking,orphan_supplier,10,Booking references supplier absent from supplier master.
+ID,booking,unexpected_negative_booking_value,10,Booking value deliberately changed to negative.
+ID,booking,invalid_currency,10,Invalid ISO-style currency code inserted.
+ID,booking,travel_before_booking,14,Travel date deliberately occurs before booking date.
+ID,booking,invalid_booking_status,10,Invalid booking status inserted.
+ID,booking,inconsistent_product_category,25,Alternative product descriptions deliberately inserted.
+ID,booking,duplicate_transaction,25,Exact duplicate transaction rows appended.

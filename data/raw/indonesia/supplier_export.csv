@@ -1,0 +1,71 @@
+provider_code,provider_name,provider_type,preferred,provider_country,provider_status
+ID-S0001,"Robles, Nguyen and Banks",Hotel,Y,ID,Active
+ID-S0002,Patel-Morales,Air,Y,ID,Active
+ID-S0003,Allen-Sanchez,Ground,Y,ID,Active
+ID-S0004,Dickson Group,Hotel,N,ID,Active
+ID-S0005,Peterson Ltd,Air,N,ID,Active
+ID-S0006,"Reynolds, Baird and Bradley",Hotel,Y,ID,Active
+ID-S0007,Stephens-Young,Other,N,ID,Active
+ID-S0008,"Caldwell, Stevenson and Joseph",Air,Y,ID,Active
+ID-S0009,Wilson-Carlson,Hotel,Y,ID,Active
+ID-S0010,Peters-Short,Hotel,N,ID,Active
+ID-S0011,Parker Group,Other,N,ID,Active
+ID-S0012,George Ltd,Hotel,N,ID,Active
+ID-S0013,"Wise, Gray and Snyder",Hotel,N,ID,Active
+ID-S0014,"Brown, Robinson and Taylor",Other,N,ID,Active
+ID-S0015,"Berger, Fields and Smith",Hotel,N,ID,Active
+ID-S0016,Guerrero Group,Air,Y,ID,Active
+ID-S0017,"Carter, Gilbert and West",Hotel,N,ID,Active
+ID-S0018,Maldonado LLC,Ground,N,ID,Active
+ID-S0019,Hudson-Gentry,Other,Y,ID,Active
+ID-S0020,Sellers-Zuniga,Hotel,Y,ID,Active
+ID-S0021,"Haas, Cooper and Davis",Hotel,Y,ID,Active
+ID-S0022,Carr PLC,Hotel,N,ID,Active
+ID-S0023,Abbott-Phelps,Ground,N,ID,Active
+ID-S0024,Wood PLC,Ground,Y,ID,Active
+ID-S0025,Smith PLC,Hotel,Y,ID,Active
+ID-S0026,Rodriguez-Campbell,Ground,N,ID,Active
+ID-S0027,Young Ltd,Air,N,ID,Active
+ID-S0028,"Long, Flores and Reyes",Ground,N,ID,Active
+ID-S0029,Graham-Clark,Hotel,N,ID,Active
+ID-S0030,Wells and Sons,Hotel,N,ID,Active
+ID-S0031,"Cruz, Middleton and Larsen",Hotel,Y,ID,Active
+ID-S0032,Roberts Ltd,Ground,Y,ID,Active
+ID-S0033,Taylor Inc,Hotel,Y,ID,Inactive
+ID-S0034,"Smith, Griffith and Tucker",Ground,Y,ID,Active
+ID-S0035,Proctor-Taylor,Hotel,Y,ID,Active
+ID-S0036,May Group,Other,N,ID,Active
+ID-S0037,English-Dominguez,Air,Y,ID,Active
+ID-S0038,Hanson-Gibson,Ground,N,ID,Active
+ID-S0039,Arnold-Cole,Air,Y,ID,Active
+ID-S0040,Perez-Coleman,Hotel,N,ID,Active
+ID-S0041,Lane Ltd,Other,Y,ID,Active
+ID-S0042,Joseph LLC,Air,Y,ID,Active
+ID-S0043,House-Johnston,Air,N,ID,Active
+ID-S0044,Good PLC,Ground,Y,ID,Active
+ID-S0045,Bush-Wilson,Hotel,Y,ID,Active
+ID-S0046,Nixon-Miller,Air,N,ID,Active
+ID-S0047,"Simon, Terrell and Terrell",Hotel,N,ID,Active
+ID-S0048,Marshall-Miller,Air,N,ID,Active
+ID-S0049,"Davis, Kennedy and Harmon",Air,Y,ID,Active
+ID-S0050,"Miller, Schultz and Yates",Other,N,ID,Active
+ID-S0051,Austin-Berger,Ground,Y,ID,Active
+ID-S0052,"Osborne, Harrison and Hunt",Hotel,Y,ID,Active
+ID-S0053,Berry-Rivera,Air,Y,ID,Active
+ID-S0054,Yu-Yates,Hotel,Y,ID,Active
+ID-S0055,Jackson-Neal,Ground,Y,ID,Active
+ID-S0056,"Curry, Acosta and Elliott",Air,Y,ID,Active
+ID-S0057,Soto PLC,Ground,Y,ID,Active
+ID-S0058,Berry Ltd,Hotel,Y,ID,Active
+ID-S0059,Lamb-Weber,Air,N,ID,Active
+ID-S0060,Washington-Martinez,Air,N,ID,Active
+ID-S0061,York LLC,Hotel,N,ID,Active
+ID-S0062,Anderson-Campbell,Hotel,Y,ID,Active
+ID-S0063,Smith-Rodriguez,Other,Y,ID,Active
+ID-S0064,Kent Ltd,Air,N,ID,Active
+ID-S0065,Hopkins LLC,Air,Y,ID,Active
+ID-S0066,Green Ltd,Air,Y,ID,Active
+ID-S0067,Washington PLC,Air,N,ID,Active
+ID-S0068,Cooper Inc,Ground,Y,ID,Active
+ID-S0069,Larson and Sons,Ground,Y,ID,Active
+ID-S0070,Mullins-Gutierrez,Hotel,Y,ID,Active

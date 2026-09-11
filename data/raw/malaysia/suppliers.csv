@@ -1,0 +1,81 @@
+supplier_id,supplier_name,supplier_type,preferred_supplier_flag,country,status
+MY-S0001,"Marks, Miller and Griffin",Hotel,Y,MY,Active
+MY-S0002,"Cox, Stark and Rodriguez",Air,Y,MY,Active
+MY-S0003,"Leach, Harris and Herrera",Hotel,N,MY,Active
+MY-S0004,Murphy PLC,Other,N,MY,Active
+MY-S0005,Wilson-Harris,Air,N,MY,Inactive
+MY-S0006,"Burns, Nolan and Griffin",Air,N,MY,Active
+MY-S0007,Chavez PLC,Air,N,MY,Active
+MY-S0008,Bryant-Brown,Ground,N,MY,Active
+MY-S0009,Chambers-Parker,Hotel,Y,MY,Active
+MY-S0010,Foster Inc,Ground,N,MY,Active
+MY-S0011,"Robinson, Jones and Henderson",Air,N,MY,Active
+MY-S0012,"Brown, Mcknight and Michael",Air,N,MY,Active
+MY-S0013,Andersen Group,Air,Y,MY,Active
+MY-S0014,Mitchell and Sons,Ground,Y,MY,Active
+MY-S0015,Cannon Ltd,Ground,Y,MY,Active
+MY-S0016,"Stuart, Brooks and Vance",Ground,N,MY,Active
+MY-S0017,Kane-Knox,Ground,Y,MY,Active
+MY-S0018,Miller-Brandt,Ground,Y,MY,Active
+MY-S0019,"Anderson, Dalton and Wilson",Hotel,N,MY,Active
+MY-S0020,"Long, Anderson and Irwin",Hotel,Y,MY,Active
+MY-S0021,Avila LLC,Ground,Y,MY,Active
+MY-S0022,Nunez-Stephens,Air,Y,MY,Active
+MY-S0023,"Gray, Hall and Murray",Hotel,N,MY,Active
+MY-S0024,Hill Ltd,Hotel,Y,MY,Active
+MY-S0025,Johnson Ltd,Ground,N,MY,Active
+MY-S0026,Mendez-Mayer,Air,Y,MY,Active
+MY-S0027,Allen Inc,Air,N,MY,Active
+MY-S0028,Wheeler Group,Hotel,N,MY,Active
+MY-S0029,"Powers, Brennan and Sanchez",Air,Y,MY,Active
+MY-S0030,Morales and Sons,Hotel,Y,MY,Active
+MY-S0031,"Robinson, Shields and Brown",Ground,N,MY,Active
+MY-S0032,"Holder, Young and Hendricks",Hotel,Y,MY,Active
+MY-S0033,"Flores, Harper and Chambers",Air,N,MY,Active
+MY-S0034,Young-Walter,Air,Y,MY,Active
+MY-S0035,"Boyd, Gutierrez and Hill",Ground,N,MY,Active
+MY-S0036,"Fry, Hobbs and Buck",Ground,N,MY,Active
+MY-S0037,"Shelton, Peters and Williams",Other,Y,MY,Active
+MY-S0038,David-Powers,Hotel,Y,MY,Active
+MY-S0039,"Flores, Butler and Hernandez",Air,Y,MY,Active
+MY-S0040,White-Medina,Hotel,Y,MY,Active
+MY-S0041,Atkinson LLC,Ground,Y,MY,Active
+MY-S0042,"Thomas, Ford and Brown",Air,Y,MY,Active
+MY-S0043,Faulkner-Grant,Hotel,Y,MY,Active
+MY-S0044,Price LLC,Other,Y,MY,Active
+MY-S0045,Rivera Inc,Air,N,MY,Active
+MY-S0046,Boone-Davis,Ground,N,MY,Active
+MY-S0047,"Calderon, Williams and Bennett",Hotel,N,MY,Active
+MY-S0048,"Morrison, Russo and Lopez",Hotel,Y,MY,Active
+MY-S0049,"Ramsey, Hansen and Mendoza",Hotel,N,MY,Active
+MY-S0050,Turner-Stout,Other,N,MY,Active
+MY-S0051,Giles Ltd,Other,Y,MY,Active
+MY-S0052,Burgess Group,Hotel,Y,MY,Active
+MY-S0053,Dominguez Ltd,Air,Y,MY,Active
+MY-S0054,Sanders and Sons,Hotel,Y,MY,Active
+MY-S0055,"Morris, Campbell and Owens",Hotel,N,MY,Active
+MY-S0056,"Howard, Green and Hunt",Other,Y,MY,Active
+MY-S0057,Owens-Lang,Hotel,N,MY,Active
+MY-S0058,"Harrison, Franco and Rocha",Hotel,N,MY,Active
+MY-S0059,Edwards-Williams,Air,Y,MY,Active
+MY-S0060,Figueroa Inc,Air,N,MY,Active
+MY-S0061,Tran-Silva,Air,N,MY,Active
+MY-S0062,"Butler, Hernandez and Rivera",Air,N,MY,Active
+MY-S0063,Hudson-Sanchez,Hotel,N,MY,Active
+MY-S0064,"Pena, Cohen and Scott",Other,Y,MY,Active
+MY-S0065,Levy-May,Hotel,Y,MY,Active
+MY-S0066,Murray-Oconnor,Hotel,N,MY,Active
+MY-S0067,Jackson-Cortez,Ground,N,MY,Active
+MY-S0068,White-Preston,Hotel,Y,MY,Active
+MY-S0069,"Bernard, Warren and Combs",Air,N,MY,Active
+MY-S0070,Landry Ltd,Hotel,Y,MY,Active
+MY-S0071,Duran Group,Ground,N,MY,Active
+MY-S0072,Kirby and Sons,Other,N,MY,Active
+MY-S0073,Mann Inc,Air,N,MY,Active
+MY-S0074,Wagner LLC,Hotel,Y,MY,Active
+MY-S0075,Williamson Ltd,Hotel,N,MY,Inactive
+MY-S0076,"Durham, Hopkins and Smith",Hotel,Y,MY,Active
+MY-S0077,"Arnold, Smith and Moreno",Hotel,Y,MY,Active
+MY-S0078,Nichols-Mitchell,Ground,Y,MY,Active
+MY-S0079,"Li, Craig and Drake",Ground,Y,MY,Active
+MY-S0080,Rodriguez Inc,Hotel,N,MY,Active

@@ -1,0 +1,19 @@
+{
+  "currency_basis": "LOCAL_CURRENCY",
+  "revenue": {
+    "pass_variance_pct": 0.50,
+    "review_variance_pct": 1.00
+  },
+  "cost": {
+    "pass_variance_pct": 0.50,
+    "review_variance_pct": 1.00
+  },
+  "gross_margin": {
+    "pass_variance_pct": 0.75,
+    "review_variance_pct": 1.50
+  },
+  "transactions": {
+    "pass_variance_pct": 0.10,
+    "review_variance_pct": 0.50
+  }
+}

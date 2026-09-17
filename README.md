@@ -1,48 +1,169 @@
 # Regional Travel Performance Analytics
 
-Independent synthetic portfolio project demonstrating an end-to-end regional business performance and analytics operating model for a corporate travel environment.
+An independent synthetic portfolio project demonstrating how regional travel data can be transformed into trusted business performance insights and management actions across Malaysia, Singapore, and Indonesia.
 
-## Purpose
+> **Disclaimer:** This project uses entirely synthetic data and assumptions. It does not represent Peter Stuyvesant Travel's actual systems, customers, suppliers, KPIs, financial performance, operations, or business results.
 
-This project demonstrates how fragmented regional travel data can be transformed into trusted management information for commercial performance, customer analytics, supplier performance, forecasting, and executive decision-making.
+## Business Problem
 
-The project simulates regional operations across:
+Regional management may receive booking, customer, supplier, and finance data from different markets with different structures, terminology, and data-quality conditions.
 
-- Malaysia
-- Singapore
-- Indonesia
+The central question explored in this project is:
 
-> **Disclaimer:** All data in this repository is synthetic. This project does not contain confidential company information and does not claim to represent the actual internal architecture, data model, systems, processes, or commercial performance of Peter Stuyvesant Travel or any other organisation.
+> **How can regional leadership obtain consistent, trusted, and actionable performance insight across markets and turn it into better business decisions?**
 
-## Business Scenario
+The project therefore focuses on creating a common regional performance framework rather than simply producing dashboards.
 
-The simulated business operates across multiple regional markets where booking, customer, supplier, finance, and operational data originate from different source systems and file formats.
+## Business Questions
 
-The objective is to develop a trusted regional analytics capability supporting:
+The analytical framework is designed to help management answer questions such as:
 
-- Regional business performance
-- Customer profitability
-- Supplier performance
-- Commercial opportunity identification
-- Travel programme analytics
-- Data quality monitoring
+- How is regional revenue and gross margin performing?
+- Which countries, products, and booking channels contribute most?
+- Which customers require commercial attention?
+- How concentrated is revenue across customers and suppliers?
+- How strong is online booking adoption?
+- Which suppliers are strategically important?
+- Can booking-system figures be reconciled with finance records?
+- Where should management prioritise retention or digital-adoption actions?
+
+## Analytical Approach
+
+The project follows a simple management-information journey:
+
+**Regional Source Data -> Data Quality & Standardisation -> Regional Master Data -> Finance Reconciliation -> Analytical Model -> Trusted KPIs -> Power BI -> Management Insights -> Actions**
+
+The synthetic environment deliberately begins with different country data structures and terminology. These are then standardised into a common regional analytical model.
+
+## Project Scope
+
+- **Markets:** Malaysia, Singapore, Indonesia
+- **Synthetic period:** September 2024 to August 2026
+- **Regional staging input:** 180,090 records
+- **Accepted analytical records:** 179,478
+- **Quarantined records:** 612
+- **Regional customers:** 560
+- **Regional suppliers:** 160
+
+The project includes data-quality controls, regional customer and supplier mapping, finance reconciliation, KPI calculations, commercial analytics, and management reporting.
+
+## Power BI Management Dashboard
+
+The final Power BI report contains five management views.
+
+### 01 - Executive Overview
+
+Provides a regional management view of revenue, booking value, gross margin, comparable revenue growth, country performance, product and channel mix, customer and supplier concentration, and regional performance trends.
+
+### 02 - Customer & Commercial
+
+Focuses on customer revenue and profitability, segmentation, revenue concentration, booking-channel behaviour, online adoption, customer value, and commercial performance.
+
+### 03 - Supplier & Travel Performance
+
+Focuses on supplier performance and concentration, travel-product performance, booking-channel behaviour, advance-purchase patterns, and travel programme indicators.
+
+### 04 - Finance & Data Quality
+
+Provides a control layer covering finance-to-booking reconciliation, revenue and cost variance, PASS / REVIEW / FAIL monitoring, and monthly reconciliation trends.
+
+Absolute finance-versus-booking comparisons are intentionally evaluated at a single-country level because the underlying source values are in local currencies.
+
+### 05 - Opportunities & Actions
+
+Moves beyond reporting by converting customer performance signals into management interventions.
+
+Example action categories include:
+
+- **Retention + Digital**
+- **Retention**
+- **Digital Adoption**
+- **Monitor**
+
+The objective is to demonstrate how analytical signals can be converted into prioritised commercial actions.
+
+## Dashboard Preview
+
+### Executive Overview
+
+![Executive Overview](powerbi/screenshots/01_executive_overview.png)
+
+### Customer & Commercial
+
+![Customer & Commercial](powerbi/screenshots/02_customer_commercial.png)
+
+### Supplier & Travel Performance
+
+![Supplier & Travel Performance](powerbi/screenshots/03_supplier_travel_performance.png)
+
+### Finance & Data Quality
+
+![Finance & Data Quality](powerbi/screenshots/04_finance_data_quality.png)
+
+### Opportunities & Actions
+
+![Opportunities & Actions](powerbi/screenshots/05_opportunities_actions.png)
+
+The complete five-page dashboard is available here:
+
+[View the full Power BI dashboard PDF](powerbi/Regional_Travel_Performance_Analytics_Interview.pdf)
+
+## Data & Analytics Flow
+
+```text
+Country Source Data
+        |
+        v
+Raw Profiling
+        |
+        v
+Data Quality
+        |
+        v
+Standardisation
+        |
+        v
+Customer & Supplier Master Data
+        |
+        v
+Finance Reconciliation
+        |
+        v
+Analytical Model
+        |
+        v
+KPI Layer
+        |
+        v
+Power BI
+        |
+        v
+Management Insights
+        |
+        v
+Recommended Actions
+```
+
+## Key Capabilities Demonstrated
+
+- Regional business-performance analytics
+- KPI standardisation and governance
+- Cross-market data standardisation
+- Data-quality controls
+- Customer and commercial analytics
+- Supplier and travel analytics
 - Finance reconciliation
-- Forecasting and planning
-- Executive reporting
+- Dimensional modelling
+- Power BI management reporting
+- Commercial opportunity identification
+- Translation of insights into management actions
 
-## Architecture
+## Technology
 
-The project follows this analytical flow:
-
-**Business Requirements → Raw Data → Data Profiling & Quality → Cleaning & Standardisation → Master Data → Finance Reconciliation → DuckDB & SQL → Star Schema → Analytics → Power BI → Management Insights & Actions**
-
-## Technology Stack
-
-### Core
+The project uses a deliberately practical local analytics stack:
 
 - Python 3.12
-- pandas
-- NumPy
+- pandas / NumPy
 - Faker
 - PyArrow / Parquet
 - DuckDB
@@ -54,80 +175,33 @@ The project follows this analytical flow:
 - DAX
 - Git / GitHub
 
-### Supporting
-
-- Jupyter
-- Ruff
-- statsmodels
-- matplotlib
+The technology supports the analytical process; it is not the primary purpose of the project.
 
 ## Repository Structure
 
 ```text
 regional-travel-performance-analytics/
-├── config/
-├── data/
-│   ├── raw/
-│   │   ├── malaysia/
-│   │   ├── singapore/
-│   │   └── indonesia/
-│   ├── reference/
-│   ├── staging/
-│   ├── silver/
-│   └── gold/
-├── src/
-├── sql/
-│   ├── staging/
-│   ├── intermediate/
-│   ├── marts/
-│   └── analysis/
-├── tests/
-├── notebooks/
-├── database/
-├── powerbi/
-├── docs/
-├── outputs/
-└── presentation/
+|-- config/          Project configuration
+|-- data/            Synthetic source, reference, and processed data
+|-- docs/            Business, KPI, quality, and governance documentation
+|-- src/             Python processing and analytical logic
+|-- sql/             SQL transformations and analytical queries
+|-- tests/           Automated validation tests
+|-- powerbi/         Power BI portfolio output
+|-- presentation/    Interview/presentation material
+|-- README.md        Project overview
 ```
-
-## Planned Development
-
-The project will progressively cover:
-
-1. Business requirements and analytical questions
-2. Source-system inventory
-3. Synthetic regional data generation
-4. Raw-data inspection and profiling
-5. Data-quality framework
-6. Data contracts
-7. Cleaning and standardisation
-8. Customer, supplier, and product master data
-9. Finance reconciliation
-10. DuckDB staging and SQL transformations
-11. Dimensional/star-schema modelling
-12. Automated data tests
-13. KPI governance
-14. Regional performance analytics
-15. Customer profitability analytics
-16. Supplier analytics
-17. Travel programme analytics
-18. Commercial opportunity identification
-19. Forecasting
-20. Power BI semantic modelling and DAX
-21. Regional executive dashboards
-22. Data-quality and operational-control dashboards
-23. UAT and governance
-24. Executive presentation
 
 ## Management Perspective
 
-The project is designed around the decision-making journey:
+The project is designed around the following decision-making journey:
 
-**Business Problem → Data → Trust → Analysis → Insight → Recommendation → Action**
+**Business Question -> KPI -> Trusted Data -> Analysis -> Insight -> Recommendation -> Action -> Measurable Outcome**
 
-The objective is not simply to build pipelines and dashboards. The technical implementation exists to support trusted regional business decisions.
+The dashboard is therefore not treated as the final output. The intended final output is a better-informed management decision and an action whose outcome can subsequently be measured.
 
-## Project Status
+## Portfolio Context
 
-**Stage 0 — Development environment:** Complete  
-**Stage 1 — Repository foundation:** In progress
+This project was independently developed for professional portfolio and interview-preparation purposes.
+
+It was not commissioned by Peter Stuyvesant Travel and does not use or claim access to any internal company data, architecture, systems, customers, suppliers, or financial information.

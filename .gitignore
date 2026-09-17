@@ -51,3 +51,9 @@ data/gold/*
 !data/staging/.gitkeep
 !data/silver/.gitkeep
 !data/gold/.gitkeep
+
+# Power BI working files
+*.pbix
+
+powerbi/Regional_Management_Analytics.pdf
+powerbi/Regional_Travel_Performance_Analytics_Interview.pbix..pdf
